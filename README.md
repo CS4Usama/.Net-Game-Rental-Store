@@ -1,1 +1,1 @@
-# .Net-Game-Rental-Store
+# Game Rental Store (ASP.NET)
