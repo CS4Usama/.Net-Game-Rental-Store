@@ -1,0 +1,10 @@
+/.git
+/.github
+
+/.vs/
+
+/GameRentalStoreWeb/appsettings.json
+/GameRentalStoreWeb/appsettings.Production.json
+
+/GameRentalStoreWeb/bin/Debug/net8.0/appsettings.json
+/GameRentalStoreWeb/bin/Debug/net8.0/appsettings.Production.json

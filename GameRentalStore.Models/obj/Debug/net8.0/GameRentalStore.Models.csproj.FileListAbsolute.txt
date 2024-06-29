@@ -1,0 +1,12 @@
+C:\Users\preci\Downloads\MEmu Download\GameRentalStore\GameRentalStore.Models\bin\Debug\net8.0\GameRentalStore.Models.deps.json
+C:\Users\preci\Downloads\MEmu Download\GameRentalStore\GameRentalStore.Models\bin\Debug\net8.0\GameRentalStore.Models.dll
+C:\Users\preci\Downloads\MEmu Download\GameRentalStore\GameRentalStore.Models\bin\Debug\net8.0\GameRentalStore.Models.pdb
+C:\Users\preci\Downloads\MEmu Download\GameRentalStore\GameRentalStore.Models\obj\Debug\net8.0\GameRentalStore.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\preci\Downloads\MEmu Download\GameRentalStore\GameRentalStore.Models\obj\Debug\net8.0\GameRentalStore.Models.AssemblyInfoInputs.cache
+C:\Users\preci\Downloads\MEmu Download\GameRentalStore\GameRentalStore.Models\obj\Debug\net8.0\GameRentalStore.Models.AssemblyInfo.cs
+C:\Users\preci\Downloads\MEmu Download\GameRentalStore\GameRentalStore.Models\obj\Debug\net8.0\GameRentalStore.Models.csproj.CoreCompileInputs.cache
+C:\Users\preci\Downloads\MEmu Download\GameRentalStore\GameRentalStore.Models\obj\Debug\net8.0\GameRentalStore.Models.sourcelink.json
+C:\Users\preci\Downloads\MEmu Download\GameRentalStore\GameRentalStore.Models\obj\Debug\net8.0\GameRentalStore.Models.dll
+C:\Users\preci\Downloads\MEmu Download\GameRentalStore\GameRentalStore.Models\obj\Debug\net8.0\refint\GameRentalStore.Models.dll
+C:\Users\preci\Downloads\MEmu Download\GameRentalStore\GameRentalStore.Models\obj\Debug\net8.0\GameRentalStore.Models.pdb
+C:\Users\preci\Downloads\MEmu Download\GameRentalStore\GameRentalStore.Models\obj\Debug\net8.0\ref\GameRentalStore.Models.dll
