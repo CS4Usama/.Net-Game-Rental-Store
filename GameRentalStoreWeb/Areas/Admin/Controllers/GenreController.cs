@@ -1,11 +1,13 @@
 ﻿using GameRentalStore.DataAccess.Repository.IRepository;
 using GameRentalStore.Models;
+using GameRentalStore.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GameRentalStoreWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    //[Authorize(Roles = SD.Role_Admin)]
+    [Authorize(Roles = SD.Role_Admin)]
     public class GenreController : Controller
     {
         public readonly IUnitOfWork _unitOfWork;
@@ -85,13 +87,13 @@ namespace GameRentalStoreWeb.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            Genre? productFromDb = _unitOfWork.Genre.Get(u => u.Id == id);
+            Genre? gameFromDb = _unitOfWork.Genre.Get(u => u.Id == id);
 
-            if (productFromDb == null)
+            if (gameFromDb == null)
             {
                 return NotFound();
             }
-            return View(productFromDb);
+            return View(gameFromDb);
         }
 
         [HttpPost, ActionName("Delete")]

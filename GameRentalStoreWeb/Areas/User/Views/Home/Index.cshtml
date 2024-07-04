@@ -1,8 +1,65 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<Game>
+
+@{
+    ViewData["Title"] = "Home";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@functions {
+    public string GenerateStarRatingHtml(int rating)
+    {
+        int emptyStars = 5 - rating;
+        string stars = "";
+
+        for (int i = 0; i < rating; i++)
+        {
+            stars += @"<i class='bi bi-star-fill'></i>";
+        }
+        for (int i = 0; i < emptyStars; i++)
+        {
+            stars += @"<i class='bi bi-star'></i>";
+        }
+
+        return stars;
+    }
+}
+
+
+<div class="row pb-3">
+    @foreach (var game in Model)
+    {
+        <div class="col-lg-4 col-sm-6">
+            <div class="row p-2">
+                <div class="col-12 p-1">
+                    <div class="card border-0 p-3 shadow border-top border-5 rounded">
+                        @if (game.GameMedias != null && game.GameMedias.Count() > 0)
+                        {
+                            <img src="@game.GameMedias.FirstOrDefault().MediaUrl" class="card-img-top rounded" />
+                        }
+                        else
+                        {
+                            <img src="https://placehold.co/500x600/png" class="card-img-top rounded" />
+                        }
+                        <div class="card-body pb-0">
+                            <div class="pl-1">
+                                <p class="card-title h5 text-dark opacity-75 text-uppercase text-center">@game.Title</p>
+                                <p class="card-title text-warning text-center"><b>@game.Platform: @game.Genre.Name</b></p>
+                            </div>
+                            <div class="pt-1">
+                                <p class="text-dark text-opacity-75 text-center mb-1">Release Date: @game.ReleaseDate</p>
+                                <p class="text-dark text-opacity-75 text-center">
+                                    @Html.Raw(GenerateStarRatingHtml(game.Rating))
+                                </p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <a asp-controller="Home" asp-action="Details" asp-route-gameId="@game.Id" class="btn btn-secondary bg-gradient border-0 form-control">
+                                Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
 </div>

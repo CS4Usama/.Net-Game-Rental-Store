@@ -1,6 +1,6 @@
 ﻿@model List<Genre>
 @{
-    ViewData["Title"] = "Genre List";
+    ViewData["Title"] = "Genres";
 }
 
 
@@ -18,7 +18,7 @@
             </div>
             <div class="col-6 text-end">
                 <a asp-controller="Genre" asp-action="Upsert" class="btn btn-primary">
-                    <i class="bi bi-plus-circle"></i> Create New Genre
+                    <i class="bi bi-plus-circle"></i> Add New Genre
                 </a>
             </div>
         </div>
@@ -28,7 +28,7 @@
                 <tr>
                     <th>Genre Name</th>
                     <th>Display Order</th>
-                    <th></th>
+                    <th class="text-center">Actions</th>
                 </tr>
             </thead>
             <tbody>

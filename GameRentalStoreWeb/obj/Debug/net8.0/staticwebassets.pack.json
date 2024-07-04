@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\preci\\Downloads\\MEmu Download\\GameRentalStore\\GameRentalStoreWeb\\wwwroot\\js\\games.js",
+      "PackagePath": "staticwebassets\\js\\games.js"
+    },
+    {
       "Id": "C:\\Users\\preci\\Downloads\\MEmu Download\\GameRentalStore\\GameRentalStoreWeb\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
@@ -243,6 +247,90 @@
     {
       "Id": "C:\\Users\\preci\\Downloads\\MEmu Download\\GameRentalStore\\GameRentalStoreWeb\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "C:\\Users\\preci\\Downloads\\MEmu Download\\GameRentalStore\\GameRentalStoreWeb\\wwwroot\\media\\RentalXpress.png",
+      "PackagePath": "staticwebassets\\media\\RentalXpress.png"
+    },
+    {
+      "Id": "C:\\Users\\preci\\Downloads\\MEmu Download\\GameRentalStore\\GameRentalStoreWeb\\wwwroot\\media\\games\\game-1\\0e07a077-5f67-4d7e-8c1e-863e5dcead70.webp",
+      "PackagePath": "staticwebassets\\media\\games\\game-1\\0e07a077-5f67-4d7e-8c1e-863e5dcead70.webp"
+    },
+    {
+      "Id": "C:\\Users\\preci\\Downloads\\MEmu Download\\GameRentalStore\\GameRentalStoreWeb\\wwwroot\\media\\games\\game-1\\4a77a065-a27f-4c79-9d45-90a0e6c7015b.webp",
+      "PackagePath": "staticwebassets\\media\\games\\game-1\\4a77a065-a27f-4c79-9d45-90a0e6c7015b.webp"
+    },
+    {
+      "Id": "C:\\Users\\preci\\Downloads\\MEmu Download\\GameRentalStore\\GameRentalStoreWeb\\wwwroot\\media\\games\\game-1\\c6402a57-debe-48f6-8428-d60ad4997254.webp",
+      "PackagePath": "staticwebassets\\media\\games\\game-1\\c6402a57-debe-48f6-8428-d60ad4997254.webp"
+    },
+    {
+      "Id": "C:\\Users\\preci\\Downloads\\MEmu Download\\GameRentalStore\\GameRentalStoreWeb\\wwwroot\\media\\games\\game-1\\ea3d5b3c-c20a-4d4b-affc-0c4d0da61430.webp",
+      "PackagePath": "staticwebassets\\media\\games\\game-1\\ea3d5b3c-c20a-4d4b-affc-0c4d0da61430.webp"
+    },
+    {
+      "Id": "C:\\Users\\preci\\Downloads\\MEmu Download\\GameRentalStore\\GameRentalStoreWeb\\wwwroot\\media\\games\\game-2\\1ffb394b-aa03-44b4-a79a-bee9b771b05b.webp",
+      "PackagePath": "staticwebassets\\media\\games\\game-2\\1ffb394b-aa03-44b4-a79a-bee9b771b05b.webp"
+    },
+    {
+      "Id": "C:\\Users\\preci\\Downloads\\MEmu Download\\GameRentalStore\\GameRentalStoreWeb\\wwwroot\\media\\games\\game-2\\2ead7900-d473-47af-b367-93bb8a09c5f6.webp",
+      "PackagePath": "staticwebassets\\media\\games\\game-2\\2ead7900-d473-47af-b367-93bb8a09c5f6.webp"
+    },
+    {
+      "Id": "C:\\Users\\preci\\Downloads\\MEmu Download\\GameRentalStore\\GameRentalStoreWeb\\wwwroot\\media\\games\\game-2\\94066954-7138-4a2e-924d-f149e300fb7a.webp",
+      "PackagePath": "staticwebassets\\media\\games\\game-2\\94066954-7138-4a2e-924d-f149e300fb7a.webp"
+    },
+    {
+      "Id": "C:\\Users\\preci\\Downloads\\MEmu Download\\GameRentalStore\\GameRentalStoreWeb\\wwwroot\\media\\games\\game-2\\e7378d53-6faa-47f8-8c67-b4ecfd9c41f9.webp",
+      "PackagePath": "staticwebassets\\media\\games\\game-2\\e7378d53-6faa-47f8-8c67-b4ecfd9c41f9.webp"
+    },
+    {
+      "Id": "C:\\Users\\preci\\Downloads\\MEmu Download\\GameRentalStore\\GameRentalStoreWeb\\wwwroot\\media\\games\\game-3\\77a06a13-f83a-40a0-af26-31ae3f8ef86e.webp",
+      "PackagePath": "staticwebassets\\media\\games\\game-3\\77a06a13-f83a-40a0-af26-31ae3f8ef86e.webp"
+    },
+    {
+      "Id": "C:\\Users\\preci\\Downloads\\MEmu Download\\GameRentalStore\\GameRentalStoreWeb\\wwwroot\\media\\games\\game-3\\8a2bb983-fda4-4015-9697-3442d9c989ee.webp",
+      "PackagePath": "staticwebassets\\media\\games\\game-3\\8a2bb983-fda4-4015-9697-3442d9c989ee.webp"
+    },
+    {
+      "Id": "C:\\Users\\preci\\Downloads\\MEmu Download\\GameRentalStore\\GameRentalStoreWeb\\wwwroot\\media\\games\\game-3\\990afc77-95cd-41b5-9c28-4da1bf8a6688.webp",
+      "PackagePath": "staticwebassets\\media\\games\\game-3\\990afc77-95cd-41b5-9c28-4da1bf8a6688.webp"
+    },
+    {
+      "Id": "C:\\Users\\preci\\Downloads\\MEmu Download\\GameRentalStore\\GameRentalStoreWeb\\wwwroot\\media\\games\\game-3\\f5ad9b4e-08a0-453e-89eb-500aaf156685.webp",
+      "PackagePath": "staticwebassets\\media\\games\\game-3\\f5ad9b4e-08a0-453e-89eb-500aaf156685.webp"
+    },
+    {
+      "Id": "C:\\Users\\preci\\Downloads\\MEmu Download\\GameRentalStore\\GameRentalStoreWeb\\wwwroot\\media\\games\\game-4\\209c58e2-ff8d-4875-884e-f1e46e5e05af.webp",
+      "PackagePath": "staticwebassets\\media\\games\\game-4\\209c58e2-ff8d-4875-884e-f1e46e5e05af.webp"
+    },
+    {
+      "Id": "C:\\Users\\preci\\Downloads\\MEmu Download\\GameRentalStore\\GameRentalStoreWeb\\wwwroot\\media\\games\\game-4\\8d54d69b-2e58-4ea2-b71f-c6c9a10fc54b.webp",
+      "PackagePath": "staticwebassets\\media\\games\\game-4\\8d54d69b-2e58-4ea2-b71f-c6c9a10fc54b.webp"
+    },
+    {
+      "Id": "C:\\Users\\preci\\Downloads\\MEmu Download\\GameRentalStore\\GameRentalStoreWeb\\wwwroot\\media\\games\\game-4\\9972760f-bb59-4319-b145-357963e8f4a3.webp",
+      "PackagePath": "staticwebassets\\media\\games\\game-4\\9972760f-bb59-4319-b145-357963e8f4a3.webp"
+    },
+    {
+      "Id": "C:\\Users\\preci\\Downloads\\MEmu Download\\GameRentalStore\\GameRentalStoreWeb\\wwwroot\\media\\games\\game-4\\9f30b7b1-aacb-42a9-a5f6-8473d7809567.webp",
+      "PackagePath": "staticwebassets\\media\\games\\game-4\\9f30b7b1-aacb-42a9-a5f6-8473d7809567.webp"
+    },
+    {
+      "Id": "C:\\Users\\preci\\Downloads\\MEmu Download\\GameRentalStore\\GameRentalStoreWeb\\wwwroot\\media\\games\\game-5\\0cd268dc-36f5-488d-95e2-b2ce6c2791aa.webp",
+      "PackagePath": "staticwebassets\\media\\games\\game-5\\0cd268dc-36f5-488d-95e2-b2ce6c2791aa.webp"
+    },
+    {
+      "Id": "C:\\Users\\preci\\Downloads\\MEmu Download\\GameRentalStore\\GameRentalStoreWeb\\wwwroot\\media\\games\\game-5\\3a1fba0d-5b69-493f-8f3e-fc7572515f65.webp",
+      "PackagePath": "staticwebassets\\media\\games\\game-5\\3a1fba0d-5b69-493f-8f3e-fc7572515f65.webp"
+    },
+    {
+      "Id": "C:\\Users\\preci\\Downloads\\MEmu Download\\GameRentalStore\\GameRentalStoreWeb\\wwwroot\\media\\games\\game-5\\c19de547-8615-4abd-a729-dca5d8fb601e.webp",
+      "PackagePath": "staticwebassets\\media\\games\\game-5\\c19de547-8615-4abd-a729-dca5d8fb601e.webp"
+    },
+    {
+      "Id": "C:\\Users\\preci\\Downloads\\MEmu Download\\GameRentalStore\\GameRentalStoreWeb\\wwwroot\\media\\games\\game-5\\ca3d1eb9-8750-495f-8337-ac4a92eda825.webp",
+      "PackagePath": "staticwebassets\\media\\games\\game-5\\ca3d1eb9-8750-495f-8337-ac4a92eda825.webp"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.GameRentalStoreWeb.Microsoft.AspNetCore.StaticWebAssets.props",

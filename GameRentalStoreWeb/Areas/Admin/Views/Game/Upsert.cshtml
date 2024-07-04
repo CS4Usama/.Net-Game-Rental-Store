@@ -1,0 +1,138 @@
+﻿@model GameVM
+@{
+    ViewData["Title"] = "Games";
+}
+
+
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white">@(Model.Game.Id !=0 ? "Update" : "Create") Game</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4 my-4">
+        <form method="post" class="row" enctype="multipart/form-data">
+            <input asp-for="Game.Id" hidden />
+            @*<input asp-for="Game.MediaUrl" hidden />*@
+
+            <div class="row">
+                <div class="col-10">
+                    <div class="border p-3">
+                        @* <div asp-validation-summary="All"></div> *@
+                        <div asp-validation-summary="ModelOnly"></div>
+                        <div class="form-floating py-2 col-12">
+                            <input asp-for="Game.Title" class="form-control border-0 shadow" />
+                            <label asp-for="Game.Title" class="ms-2"></label>
+                            <span asp-validation-for="Game.Title" class="text-danger"></span>
+                        </div>
+                        <div class="py-2 col-12">
+                            <label asp-for="Game.Description" class="ms-2 text-muted"></label>
+                            <textarea asp-for="Game.Description" class="form-control border-0 shadow"></textarea>
+                        </div>
+                        <div class="form-floating py-2 col-12">
+                            <input asp-for="Game.Platform" class="form-control border-0 shadow" />
+                            <label asp-for="Game.Platform" class="ms-2"></label>
+                            <span asp-validation-for="Game.Platform" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating py-2 col-12">
+                            <input asp-for="Game.ReleaseDate" class="form-control border-0 shadow" type="date" min="2015-01-01" />
+                            <label asp-for="Game.ReleaseDate" class="ms-2"></label>
+                            <span asp-validation-for="Game.ReleaseDate" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating py-2 col-12">
+                            <input asp-for="Game.Rating" class="form-control border-0 shadow" min="0" max="5" value="@(Model.Game.Rating == 0 ? null : Model.Game.Rating)" />
+                            <label asp-for="Game.Rating" class="ms-2"></label>
+                            <span asp-validation-for="Game.Rating" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating py-2 col-12">
+                            <select asp-for="@Model.Game.GenreId" asp-items="@Model.GenreList" class="form-select border-0 shadow">
+                                <option disabled selected>--Select Genre--</option>
+                            </select>
+                            <label asp-for="Game.GenreId" class="ms-2"></label>
+                            <span asp-validation-for="Game.GenreId" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-floating py-2 col-12">
+                            <input type="file" name="files" class="form-control border-0 shadow" multiple />
+                            <label asp-for="Game.GameMedias" class="ms-2"></label>
+                            @*<span asp-validation-for="Game.MediaUrl" class="text-danger"></span>*@
+                        </div>
+
+                        <div class="row pt-2">
+                            <div class="col-6 col-md-3">
+                                @if (Model.Game.Id != 0)
+                                {
+                                    <button type="submit" class="btn btn-primary form-control">Update</button>
+                                }
+                                else
+                                {
+                                    <button type="submit" class="btn btn-primary form-control">Create</button>
+                                }
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <a asp-controller="Game" asp-action="Index" class="btn btn-outline-secondary border form-control">
+                                    Back to List
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-2">
+                    @*<img src="@Model.Game.MediaUrl" alt="Alternate Text" width="100%" style="border-radius:5px; border:1px solid #BBB9B9" />*@
+
+                    @if(Model.Game.GameMedias != null)
+                        {
+                            foreach(var media in Model.Game.GameMedias)
+                            {
+                                <div class="border p-1 m-2 text-center">
+                                    @if (media.MediaType == "image")
+                                    {
+                                        <img src="@media.MediaUrl" alt="Alternate Text" width="100%" style="border-radius: 5px; border:1px solid #BBB9B9" />
+                                    }
+                                    else if (media.MediaType == "video")
+                                    {
+                                        @if (media.MediaUrl.Contains("http") || media.MediaUrl.Contains("www"))
+                                        {
+                                            <iframe width="100%" style="border-radius: 5px; border:1px solid #BBB9B9" src="@media.MediaUrl"
+                                                    frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                                    allowfullscreen>
+                                            </iframe>
+                                        }
+                                        @if (media.MediaUrl.Contains("games"))
+                                        {
+                                            <video width="100%" style="border-radius: 5px; border:1px solid #BBB9B9" controls>
+                                                <source src="@media.MediaUrl" type="video/mp4">
+                                            </video>
+                                        }
+                                    }
+                                    <a asp-action="DeleteImage" class="btn btn-danger mt-1" asp-route-imageId="@media.Id">
+                                        <i class="bi bi-trash-fill"></i> Delete
+                                    </a>
+                                </div>
+                            }
+                        }
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+@section Scripts {
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'anchor autolink charmap codesample emoticons lists table visualblocks wordcount',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent',
+        });
+    </script>
+
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
