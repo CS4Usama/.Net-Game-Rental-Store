@@ -9,16 +9,36 @@
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
+      "Id": "C:\\Users\\preci\\Downloads\\MEmu Download\\GameRentalStore\\GameRentalStoreWeb\\wwwroot\\css\\subscription-packages.css",
+      "PackagePath": "staticwebassets\\css\\subscription-packages.css"
+    },
+    {
       "Id": "C:\\Users\\preci\\Downloads\\MEmu Download\\GameRentalStore\\GameRentalStoreWeb\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
-      "Id": "C:\\Users\\preci\\Downloads\\MEmu Download\\GameRentalStore\\GameRentalStoreWeb\\wwwroot\\js\\games.js",
-      "PackagePath": "staticwebassets\\js\\games.js"
+      "Id": "C:\\Users\\preci\\Downloads\\MEmu Download\\GameRentalStore\\GameRentalStoreWeb\\wwwroot\\js\\gamesData.js",
+      "PackagePath": "staticwebassets\\js\\gamesData.js"
     },
     {
       "Id": "C:\\Users\\preci\\Downloads\\MEmu Download\\GameRentalStore\\GameRentalStoreWeb\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "C:\\Users\\preci\\Downloads\\MEmu Download\\GameRentalStore\\GameRentalStoreWeb\\wwwroot\\js\\subscriptionPackage.js",
+      "PackagePath": "staticwebassets\\js\\subscriptionPackage.js"
+    },
+    {
+      "Id": "C:\\Users\\preci\\Downloads\\MEmu Download\\GameRentalStore\\GameRentalStoreWeb\\wwwroot\\js\\user.js",
+      "PackagePath": "staticwebassets\\js\\user.js"
+    },
+    {
+      "Id": "C:\\Users\\preci\\Downloads\\MEmu Download\\GameRentalStore\\GameRentalStoreWeb\\wwwroot\\js\\userPackage.js",
+      "PackagePath": "staticwebassets\\js\\userPackage.js"
+    },
+    {
+      "Id": "C:\\Users\\preci\\Downloads\\MEmu Download\\GameRentalStore\\GameRentalStoreWeb\\wwwroot\\js\\userSubscription.js",
+      "PackagePath": "staticwebassets\\js\\userSubscription.js"
     },
     {
       "Id": "C:\\Users\\preci\\Downloads\\MEmu Download\\GameRentalStore\\GameRentalStoreWeb\\wwwroot\\lib\\bootstrap\\LICENSE",

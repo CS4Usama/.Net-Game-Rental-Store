@@ -8,6 +8,8 @@ namespace GameRentalStore.Models
     {
         public int Id { get; set; }
 
+        public int Count { get { return 1; } }
+
         public int GameId { get; set; }
         [ForeignKey("GameId")]
         [ValidateNever]
@@ -18,5 +20,23 @@ namespace GameRentalStore.Models
         [ForeignKey("ApplicationUserId")]
         [ValidateNever]
         public ApplicationUser ApplicationUser { get; set; }
+
+
+        [Display(Name = "Rented Date")]
+        public DateOnly RentedDate { get; set; }
+
+        [Display(Name = "Return Date")]
+        public DateOnly ReturnDate
+        {
+            get
+            {
+                return RentedDate.AddMonths(1);
+            }
+        }
+
+        //public string UserPackageId { get; set; }
+        //[ForeignKey("UserPackageId")]
+        //[ValidateNever]
+        //public UserPackage UserPackage { get; set; }
     }
 }

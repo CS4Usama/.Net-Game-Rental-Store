@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "User Subscriptions";
+}
+
+
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2">All Users Subscription</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <table id="userSubscriptionsData" class="table table-bordered table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>User Name</th>
+                    <th>User Email</th>
+                    <th>Package Name</th>
+                    <th>Total Subscription Months</th>
+                    <th>Subscribed Date</th>
+                    <th>Expired Date</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script src="~/js/userSubscription.js"></script>
+}

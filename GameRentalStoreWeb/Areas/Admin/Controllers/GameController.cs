@@ -33,8 +33,6 @@ namespace GameRentalStore.Areas.Admin.Controllers
                 Text = u.Name,
                 Value = u.Id.ToString()
             });
-            // ViewBag.genreList = genreList;
-            // ViewData["genreList"] = genreList;
 
             GameVM gameVM = new()
             {
@@ -129,38 +127,7 @@ namespace GameRentalStore.Areas.Admin.Controllers
         }
 
 
-        //public IActionResult Delete(int? id)
-        //{
-        //    if (id == null || id == 0)
-        //    {
-        //        return NotFound();
-        //    }
-        //    Game? genreFromDb = _unitOfWork.Game.Get(u => u.Id == id);
-
-        //    if (genreFromDb == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    return View(genreFromDb);
-        //}
-
-        //[HttpPost, ActionName("Delete")]
-        //public IActionResult DeletePOST(int? id)
-        //{
-        //    Game? obj = _unitOfWork.Game.Get(u => u.Id == id);
-        //    if (obj == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    _unitOfWork.Game.Remove(obj);
-        //    _unitOfWork.Save();
-        //    TempData["success"] = "Game Deleted Successfully";
-        //    return RedirectToAction("Index", "Game");
-        //}
-
-
-        public IActionResult DeleteImage(int imageId)
+        public IActionResult DeleteMedia(int imageId)
         {
             var imageToBeDeleted = _unitOfWork.GameMedia.Get(u => u.Id == imageId);
             int gameId = imageToBeDeleted.GameId;
@@ -205,12 +172,6 @@ namespace GameRentalStore.Areas.Admin.Controllers
             {
                 return Json(new { success = false, message = "Error while Deleting" });
             }
-
-            //var oldImagePath = Path.Combine(_webHostEnvironment.WebRootPath, gameToBeDeleted.MediaUrl.Trim('\\'));
-            //if (System.IO.File.Exists(oldImagePath))
-            //{
-            //    System.IO.File.Delete(oldImagePath);
-            //}
 
             string gamePath = @"media\games\game-" + id;
             string finalPath = Path.Combine(_webHostEnvironment.WebRootPath, gamePath);

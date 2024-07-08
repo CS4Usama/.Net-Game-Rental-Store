@@ -1,0 +1,59 @@
+.font-raleway {
+    font-family: 'Raleway', sans-serif;
+}
+
+.font-bebas-neue {
+    font-family: 'Bebas Neue', sans-serif;
+}
+
+.color-blue {
+    color: #0066FF !important;
+}
+
+.color-midnight-blue {
+    color: #0B1E59 !important;
+}
+
+.package-1 {
+    color: #80A7F8;
+}
+
+.package-2 {
+    color: #FFCC00;
+}
+
+.package-3 {
+    color: #7DFBA2;
+}
+
+.small-font {
+    font-size: 0.75rem;
+}
+
+.small-font-2 {
+    font-size: 0.7rem;
+}
+
+.card-shadow {
+    border-radius: 1rem;
+    border: 2px solid black !important;
+    box-shadow: 4px 4px 2px 0px rgba(0, 0, 0, 1);
+}
+
+
+
+.plans-heading {
+    font-size: 3.3rem;
+    text-shadow: 2.2px 2.2px 0px #1B1A1A;
+    -webkit-text-stroke: 0.05rem black;
+    font-weight: bold;
+    line-height: 3.25rem;
+}
+
+.neg-margin {
+    margin-left: -0.5rem;
+}
+
+.usama {
+    margin-top: 3rem !important;
+}

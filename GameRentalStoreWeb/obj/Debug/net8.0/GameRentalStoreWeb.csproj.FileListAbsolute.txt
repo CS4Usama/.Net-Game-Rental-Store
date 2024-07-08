@@ -1,4 +1,3 @@
-C:\Users\preci\Downloads\MEmu Download\GameRentalStore\GameRentalStoreWeb\bin\Debug\net8.0\GameRentalStoreWeb.dll
 C:\Users\preci\Downloads\MEmu Download\GameRentalStore\GameRentalStoreWeb\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\preci\Downloads\MEmu Download\GameRentalStore\GameRentalStoreWeb\bin\Debug\net8.0\appsettings.json
 C:\Users\preci\Downloads\MEmu Download\GameRentalStore\GameRentalStoreWeb\bin\Debug\net8.0\appsettings.Production.json
@@ -6,6 +5,7 @@ C:\Users\preci\Downloads\MEmu Download\GameRentalStore\GameRentalStoreWeb\bin\De
 C:\Users\preci\Downloads\MEmu Download\GameRentalStore\GameRentalStoreWeb\bin\Debug\net8.0\GameRentalStoreWeb.exe
 C:\Users\preci\Downloads\MEmu Download\GameRentalStore\GameRentalStoreWeb\bin\Debug\net8.0\GameRentalStoreWeb.deps.json
 C:\Users\preci\Downloads\MEmu Download\GameRentalStore\GameRentalStoreWeb\bin\Debug\net8.0\GameRentalStoreWeb.runtimeconfig.json
+C:\Users\preci\Downloads\MEmu Download\GameRentalStore\GameRentalStoreWeb\bin\Debug\net8.0\GameRentalStoreWeb.dll
 C:\Users\preci\Downloads\MEmu Download\GameRentalStore\GameRentalStoreWeb\bin\Debug\net8.0\GameRentalStoreWeb.pdb
 C:\Users\preci\Downloads\MEmu Download\GameRentalStore\GameRentalStoreWeb\bin\Debug\net8.0\Azure.Core.dll
 C:\Users\preci\Downloads\MEmu Download\GameRentalStore\GameRentalStoreWeb\bin\Debug\net8.0\Azure.Identity.dll

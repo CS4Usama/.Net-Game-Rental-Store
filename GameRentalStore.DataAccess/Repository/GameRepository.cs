@@ -23,6 +23,7 @@ namespace GameRentalStore.DataAccess.Repository
                 objFromDb.Description = obj.Description;
                 objFromDb.Platform = obj.Platform;
                 objFromDb.ReleaseDate = obj.ReleaseDate;
+                objFromDb.Quantity = obj.Quantity;
                 objFromDb.Rating = obj.Rating;
                 objFromDb.GenreId = obj.GenreId;
                 objFromDb.GameMedias = obj.GameMedias;

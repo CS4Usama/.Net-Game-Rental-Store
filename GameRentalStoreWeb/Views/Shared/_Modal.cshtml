@@ -1,0 +1,28 @@
+﻿<!-- Button trigger modal -->
+@*<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Launch demo modal
+    </button>*@
+
+<!-- Modal -->
+@*<input type="hidden" name="TotalSubscriptionMonths" value="1" />*@
+
+<div class="modal fade" id="exampleModal-@Model.Id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form method="post" asp-action="Index" enctype="multipart/form-data">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5 fw-medium" id="exampleModalLabel">Enter Subscription for Months</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="packageId" value="@Model.Id" />
+                    <input type="number" min="1" max="12" value="1" class="form-control w-100" id="totalSubscriptionMonths" name="totalSubscriptionMonths" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

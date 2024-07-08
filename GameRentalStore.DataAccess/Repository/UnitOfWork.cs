@@ -10,6 +10,9 @@ namespace GameRentalStore.DataAccess.Repository
         public IGameRepository Game { get; private set; }
         public IGameMediaRepository GameMedia { get; private set; }
         public IShoppingCartRepository ShoppingCart { get; private set; }
+        public ISubscriptionPackageRepository SubscriptionPackage { get; private set; }
+        public IUserPackageRepository UserPackage { get; private set; }
+        public IApplicationUserRepository ApplicationUser { get; private set; }
 
 
         public UnitOfWork(ApplicationDbContext db)
@@ -19,11 +22,19 @@ namespace GameRentalStore.DataAccess.Repository
             Game = new GameRepository(_db);
             GameMedia = new GameMediaRepository(_db);
             ShoppingCart = new ShoppingCartRepository(_db);
+            SubscriptionPackage = new SubscriptionPackageRepository(_db);
+            UserPackage = new UserPackageRepository(_db);
+            ApplicationUser = new ApplicationUserRepository(_db);
         }
 
         public void Save()
         {
             _db.SaveChanges();
+        }
+
+        public async Task SaveAsync()
+        {
+            await _db.SaveChangesAsync();
         }
     }
 }

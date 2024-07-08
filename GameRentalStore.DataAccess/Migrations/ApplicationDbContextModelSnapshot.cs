@@ -41,6 +41,9 @@ namespace GameRentalStore.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
                     b.Property<int>("Rating")
                         .HasColumnType("int");
 
@@ -64,6 +67,7 @@ namespace GameRentalStore.DataAccess.Migrations
                             Description = "1975. Disaster strikes the Beira D oil rig off the coast of Scotland. Navigate the collapsing rig to save your crew from an otherworldly horror on the edge of all logic and reality.",
                             GenreId = 3,
                             Platform = "PC",
+                            Quantity = 7,
                             Rating = 4,
                             ReleaseDate = new DateOnly(2024, 6, 18),
                             Title = "Still Wakes the Deep"
@@ -74,6 +78,7 @@ namespace GameRentalStore.DataAccess.Migrations
                             Description = "Burning with anger, The girl wages a one-woman war against the cult, taking them down cultist by cultist, bullet by bullet, until she reaches her true target: the leader.",
                             GenreId = 4,
                             Platform = "Nintendo Switch",
+                            Quantity = 10,
                             Rating = 3,
                             ReleaseDate = new DateOnly(2024, 4, 9),
                             Title = "Children of the Sun"
@@ -84,6 +89,7 @@ namespace GameRentalStore.DataAccess.Migrations
                             Description = "Save the galaxy - one patient at a time! As the new director of Galacticare, you will build and manage a series of hospitals to keep your patients alive for as long as possible - for money!",
                             GenreId = 5,
                             Platform = "PC",
+                            Quantity = 8,
                             Rating = 5,
                             ReleaseDate = new DateOnly(2024, 5, 23),
                             Title = "Galacticare"
@@ -94,8 +100,9 @@ namespace GameRentalStore.DataAccess.Migrations
                             Description = "Welcome to Botany Manor, a stately home in 19th century England. You play as its inhabitant Arabella Greene, a retired botanist.",
                             GenreId = 6,
                             Platform = "Xbox",
+                            Quantity = 6,
                             Rating = 2,
-                            ReleaseDate = new DateOnly(2024, 4, 9),
+                            ReleaseDate = new DateOnly(2024, 2, 9),
                             Title = "Botany Manor"
                         },
                         new
@@ -104,8 +111,9 @@ namespace GameRentalStore.DataAccess.Migrations
                             Description = "Stage dive into the heart of SoLA, the ultimate Californian music festival, built upon ancient grounds...",
                             GenreId = 3,
                             Platform = "Playstation",
+                            Quantity = 9,
                             Rating = 3,
-                            ReleaseDate = new DateOnly(2024, 4, 17),
+                            ReleaseDate = new DateOnly(2024, 3, 17),
                             Title = "Dead Island 2: SoLA"
                         });
                 });
@@ -191,6 +199,9 @@ namespace GameRentalStore.DataAccess.Migrations
                     b.Property<int>("GameId")
                         .HasColumnType("int");
 
+                    b.Property<DateOnly>("RentedDate")
+                        .HasColumnType("date");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ApplicationUserId");
@@ -198,6 +209,91 @@ namespace GameRentalStore.DataAccess.Migrations
                     b.HasIndex("GameId");
 
                     b.ToTable("ShoppingCarts");
+                });
+
+            modelBuilder.Entity("GameRentalStore.Models.SubscriptionPackage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("GamesPerMonth")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MaxReplacePerMonth")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PackageName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RentNewReleasedGame")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SubscriptionPackages");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            GamesPerMonth = 2,
+                            MaxReplacePerMonth = 0,
+                            PackageName = "Basic",
+                            RentNewReleasedGame = 0
+                        },
+                        new
+                        {
+                            Id = 2,
+                            GamesPerMonth = 3,
+                            MaxReplacePerMonth = 3,
+                            PackageName = "Premium Max",
+                            RentNewReleasedGame = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            GamesPerMonth = 2,
+                            MaxReplacePerMonth = 2,
+                            PackageName = "Premium",
+                            RentNewReleasedGame = 1
+                        });
+                });
+
+            modelBuilder.Entity("GameRentalStore.Models.UserPackage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ApplicationUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateOnly>("ExpiredDate")
+                        .HasColumnType("date");
+
+                    b.Property<int?>("PackageId")
+                        .HasColumnType("int");
+
+                    b.Property<DateOnly>("SubscribedDate")
+                        .HasColumnType("date");
+
+                    b.Property<int>("TotalSubscriptionMonths")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("PackageId");
+
+                    b.ToTable("UserPackages");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -473,6 +569,23 @@ namespace GameRentalStore.DataAccess.Migrations
                     b.Navigation("ApplicationUser");
 
                     b.Navigation("Game");
+                });
+
+            modelBuilder.Entity("GameRentalStore.Models.UserPackage", b =>
+                {
+                    b.HasOne("GameRentalStore.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("GameRentalStore.Models.SubscriptionPackage", "SubscriptionPackage")
+                        .WithMany()
+                        .HasForeignKey("PackageId");
+
+                    b.Navigation("ApplicationUser");
+
+                    b.Navigation("SubscriptionPackage");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

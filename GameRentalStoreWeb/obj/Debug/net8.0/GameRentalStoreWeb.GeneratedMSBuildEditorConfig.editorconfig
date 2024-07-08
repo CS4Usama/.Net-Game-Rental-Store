@@ -26,10 +26,6 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\preci\Downloads\MEmu Download\GameRentalStore\GameRentalStoreWeb
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/preci/Downloads/MEmu Download/GameRentalStore/GameRentalStoreWeb/Areas/Admin/Views/Game/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcR2FtZVxEZWxldGUuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/preci/Downloads/MEmu Download/GameRentalStore/GameRentalStoreWeb/Areas/Admin/Views/Game/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcR2FtZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -48,6 +44,22 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/preci/Downloads/MEmu Download/GameRentalStore/GameRentalStoreWeb/Areas/Admin/Views/Genre/Upsert.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcR2VucmVcVXBzZXJ0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/preci/Downloads/MEmu Download/GameRentalStore/GameRentalStoreWeb/Areas/Admin/Views/SubscriptionPackage/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU3Vic2NyaXB0aW9uUGFja2FnZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/preci/Downloads/MEmu Download/GameRentalStore/GameRentalStoreWeb/Areas/Admin/Views/SubscriptionPackage/Upsert.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU3Vic2NyaXB0aW9uUGFja2FnZVxVcHNlcnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/preci/Downloads/MEmu Download/GameRentalStore/GameRentalStoreWeb/Areas/Admin/Views/User/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVXNlclxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/preci/Downloads/MEmu Download/GameRentalStore/GameRentalStoreWeb/Areas/Admin/Views/User/UserSubscription.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVXNlclxVc2VyU3Vic2NyaXB0aW9uLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/preci/Downloads/MEmu Download/GameRentalStore/GameRentalStoreWeb/Areas/Admin/Views/_ViewImports.cshtml]
@@ -226,8 +238,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVXNlclxWaWV3c1xIb21lXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/preci/Downloads/MEmu Download/GameRentalStore/GameRentalStoreWeb/Areas/User/Views/SubscriptionPackage/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVXNlclxWaWV3c1xTdWJzY3JpcHRpb25QYWNrYWdlXEluZGV4LmNzaHRtbA==
+[C:/Users/preci/Downloads/MEmu Download/GameRentalStore/GameRentalStoreWeb/Areas/User/Views/UserPackage/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVXNlclxWaWV3c1xVc2VyUGFja2FnZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/preci/Downloads/MEmu Download/GameRentalStore/GameRentalStoreWeb/Areas/User/Views/UserPackage/Subscribed.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVXNlclxWaWV3c1xVc2VyUGFja2FnZVxTdWJzY3JpYmVkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/preci/Downloads/MEmu Download/GameRentalStore/GameRentalStoreWeb/Areas/User/Views/_ViewImports.cshtml]
@@ -244,6 +260,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/preci/Downloads/MEmu Download/GameRentalStore/GameRentalStoreWeb/Views/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/preci/Downloads/MEmu Download/GameRentalStore/GameRentalStoreWeb/Views/Shared/_Modal.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Nb2RhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/preci/Downloads/MEmu Download/GameRentalStore/GameRentalStoreWeb/Views/Shared/_Notification.cshtml]

@@ -141,16 +141,16 @@ bg-success {
 
 
 .btn-outline-warning {
-    color: #C07b24;
+    color: #000;
     border-color: #C07b24;
 }
 
 
-.btn-outline-warning:hover {
-    color: #fff;
-    background-color: #C07b24;
-    border-color: #C07b24;
-}
+    .btn-outline-warning:hover {
+        color: #000;
+        background-color: #ffc107;
+        border-color: #C07b24;
+    }
 
 
 .btn-check:focus+.btn-outline-warning,

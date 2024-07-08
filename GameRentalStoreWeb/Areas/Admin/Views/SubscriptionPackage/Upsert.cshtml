@@ -1,0 +1,75 @@
+﻿@model SubscriptionPackage
+@{
+    ViewData["Title"] = "Create/Edit Package";
+}
+
+
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white">@(Model.Id !=0 ? "Update" : "Create") Subscription Package</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4 my-4">
+        <form method="post" class="row" enctype="multipart/form-data">
+            <input asp-for="Id" hidden />
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="border p-3">
+                        @* <div asp-validation-summary="All"></div> *@
+                        <div asp-validation-summary="ModelOnly"></div>
+                        <div class="form-floating py-2 col-12">
+                            <input asp-for="PackageName" class="form-control border-0 shadow" />
+                            <label asp-for="PackageName" class="ms-2"></label>
+                            <span asp-validation-for="PackageName" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating py-2 col-12">
+                            <input asp-for="GamesPerMonth" class="form-control border-0 shadow" min="0" max="10" value="@(Model.GamesPerMonth == 0 ? null : Model.GamesPerMonth)" />
+                            <label asp-for="GamesPerMonth" class="ms-2"></label>
+                            <span asp-validation-for="GamesPerMonth" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating py-2 col-12">
+                            <input asp-for="RentNewReleasedGame" class="form-control border-0 shadow" min="0" max="10" value="@(Model.RentNewReleasedGame == 0 ? null : Model.RentNewReleasedGame)" />
+                            <label asp-for="RentNewReleasedGame" class="ms-2"></label>
+                            <span asp-validation-for="RentNewReleasedGame" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating py-2 col-12">
+                            <input asp-for="MaxReplacePerMonth" class="form-control border-0 shadow" min="0" max="10" value="@(Model.MaxReplacePerMonth == 0 ? null : Model.MaxReplacePerMonth)" />
+                            <label asp-for="MaxReplacePerMonth" class="ms-2"></label>
+                            <span asp-validation-for="MaxReplacePerMonth" class="text-danger"></span>
+                        </div>
+
+                        <div class="row pt-2">
+                            <div class="col-6 col-md-3">
+                                @if (Model.Id != 0)
+                                {
+                                    <button type="submit" class="btn btn-primary form-control">Update</button>
+                                }
+                                else
+                                {
+                                    <button type="submit" class="btn btn-primary form-control">Create</button>
+                                }
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <a asp-controller="SubscriptionPackage" asp-action="Index" class="btn btn-outline-secondary border form-control">
+                                    Back to List
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

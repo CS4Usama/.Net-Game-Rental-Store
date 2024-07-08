@@ -42,6 +42,11 @@
                             <span asp-validation-for="Game.ReleaseDate" class="text-danger"></span>
                         </div>
                         <div class="form-floating py-2 col-12">
+                            <input asp-for="Game.Quantity" class="form-control border-0 shadow" min="1" max="100" value="@(Model.Game.Quantity == 0 ? null : Model.Game.Quantity)" />
+                            <label asp-for="Game.Quantity" class="ms-2"></label>
+                            <span asp-validation-for="Game.Quantity" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating py-2 col-12">
                             <input asp-for="Game.Rating" class="form-control border-0 shadow" min="0" max="5" value="@(Model.Game.Rating == 0 ? null : Model.Game.Rating)" />
                             <label asp-for="Game.Rating" class="ms-2"></label>
                             <span asp-validation-for="Game.Rating" class="text-danger"></span>
@@ -108,7 +113,7 @@
                                             </video>
                                         }
                                     }
-                                    <a asp-action="DeleteImage" class="btn btn-danger mt-1" asp-route-imageId="@media.Id">
+                                    <a asp-action="DeleteMedia" class="btn btn-danger mt-1" asp-route-imageId="@media.Id">
                                         <i class="bi bi-trash-fill"></i> Delete
                                     </a>
                                 </div>

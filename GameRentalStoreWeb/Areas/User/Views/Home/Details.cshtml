@@ -1,4 +1,5 @@
 ﻿@model ShoppingCart;
+
 @{
     ViewData["Title"] = "Game Details";
 }
@@ -46,7 +47,7 @@
                                             }
                                             else if (mediaWithIndex.Media.MediaType == "video")
                                             {
-                                                @if (mediaWithIndex.Media.MediaUrl.Contains("http") || mediaWithIndex.Media.MediaUrl.Contains("www"))
+                                                @if (mediaWithIndex.Media.MediaUrl.Contains("youtube"))
                                                 {
                                                     <iframe class="d-block w-100" height="350px" src="@mediaWithIndex.Media.MediaUrl"
                                                             frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
@@ -81,27 +82,33 @@
                         <div class="col-12 col-md-6 pb-4">
                             <span class="badge fs-6" title="Game Platform">@Model.Game.Platform</span>
                         </div>
-                        <div class="row ps-2 mt-1 mb-1">
+                        <div class="row ps-2 mt-1">
                             <h6 class="text-dark text-opacity-75 fw-medium">
                                 <span class="text-warning">Genre:&nbsp;</span>
                                 @Model.Game.Genre.Name
                             </h6>
                         </div>
-                        <div class="row ps-2">
-                            <h6 class="text-dark text-opacity-75 fw-medium pb-2">
+                        <div class="row ps-2 mt-1">
+                            <h6 class="text-dark text-opacity-75 fw-medium">
                                 Release Date:&nbsp;
                                 <span class="text-warning">
                                     @Model.Game.ReleaseDate
                                 </span>
                             </h6>
                         </div>
-                        
+                        <div class="row ps-2 mt-1">
+                            <h6 class="text-dark text-opacity-75 fw-medium pb-2">
+                                <span class="text-warning">Quantity:&nbsp;</span>
+                                @Model.Game.Quantity
+                            </h6>
+                        </div>
+
                         <div class="border-bottom border-2 mt-3 w-50"></div>
 
-                        <div class="row pl-2 my-3">
+                        <div class="row pl-2 mt-3 mb-1">
                             <p class="text-secondary lh-sm">@Html.Raw(Model.Game.Description)</p>
                         </div>
-                        
+
                         <div class="row">
                             <div class="col-12 col-md-6 pb-1">
                                 <button type="submit"

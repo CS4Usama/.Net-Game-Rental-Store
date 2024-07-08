@@ -1,0 +1,72 @@
+﻿@model IEnumerable<SubscriptionPackage>
+
+
+@{
+    ViewData["Title"] = "Subscription Packages";
+}
+
+<link rel="stylesheet" href="~/css/subscription-packages.css" asp-append-version="true" />
+
+
+
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2">Subscription Packages</h2>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="card-body py-4 mb-4">
+        <section class="row font-raleway justify-content-evenly mx-2 mt-3">
+            @foreach (var package in Model)
+            {
+                <div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-4 mb-lg-0 align-self-end">
+                    <div class="card h-auto card-shadow py-2" id="basic-package">
+                        <div class="card-body text-center">
+                            <p class="plans-heading font-bebas-neue pb-0 @($"package-{package.Id}")">@package.PackageName.ToUpper()</p>
+                            <div>
+                                <p class="fs-1 fw-bold color-blue d-inline">@package.GamesPerMonth games </p>
+                                <p class="fs-6 fw-bold color-blue d-inline align-baseline neg-margin">/mon.</p>
+                            </div>
+                            <div class="color-midnight-blue mt-4 text-center">
+                                <p class="small-font fw-semibold mb-2">
+                                    @(package.RentNewReleasedGame == 0 ?
+                                        @Html.Raw("<span>Can't Rent New Games<br />(Released within the Last 3 Months)</span>")
+                                            :
+                                        @Html.Raw($"<span>Rent <span class='fw-bold'>{package.RentNewReleasedGame}</span> New Game{(package.RentNewReleasedGame > 1 ? "s" : "")} per Month</span>")
+                                    )
+                                </p>
+
+                                @if (package.MaxReplacePerMonth > 0)
+                                {
+                                    <p class="small-font fw-semibold">
+                                        <span>
+                                            Replace Games
+                                            <span class="fw-bold">
+                                                @(package.RentNewReleasedGame == 2 ? "Thrice" : "Twice")
+                                            </span>
+                                            A Month
+                                        </span>
+                                    </p>
+                                }
+                            </div>
+
+                            <form method="post" asp-action="Index" enctype="multipart/form-data">
+                                <input type="hidden" name="packageId" value="@package.Id" />
+                                <button type="button" class="btn @(package.PackageName == "Premium Max" ? "btn-outline-warning" : "btn-light") rounded-5 border-1 border-dark w-100 small-font-2 fw-bold my-2 py-2" data-bs-toggle="modal" data-bs-target="#exampleModal-@package.Id">
+                                    Subscribe Now
+                                </button>
+
+                                <partial name="_Modal" for="@package" />
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            }
+        </section>
+    </div>
+</div>

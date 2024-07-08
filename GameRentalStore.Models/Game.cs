@@ -16,6 +16,7 @@ namespace GameRentalStore.Models
         [Required]
         [Display(Name = "Release Date")]
         public DateOnly ReleaseDate { get; set; }
+        public int Quantity { get; set; }
         public int Rating { get; set; }
 
         public int GenreId { get; set; }

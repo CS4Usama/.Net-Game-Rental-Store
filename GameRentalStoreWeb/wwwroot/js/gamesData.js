@@ -8,10 +8,11 @@ function loadDataTable() {
     dataTable = $('#gameData').DataTable({
         "ajax": { "url": "/Admin/Game/GetAll" },
         "columns": [
-            { "data": "title", "width": "18%" },
+            { "data": "title", "width": "17%" },
             { "data": "platform", "width": "15%" },
-            { "data": "genre.name", "width": "15%" },
-            { "data": "releaseDate", "width": "13%" },
+            { "data": "genre.name", "width": "12%" },
+            { "data": "releaseDate", "width": "10%", "className": "text-center" },
+            { "data": "quantity", "width": "10%", "className": "text-center" },
             {
                 "data": "rating",
                 "render": function (data) {
@@ -24,7 +25,8 @@ function loadDataTable() {
                     }
                     return `<span class='rating-stars'>${stars}</span>`;
                 },
-                "width": "10%"
+                "width": "10%",
+                "className": "text-center"
             },
             {
                 "data": "id",
@@ -34,7 +36,8 @@ function loadDataTable() {
                                 <a onClick=Delete('/admin/game/delete/${data}') class="btn btn-danger mx-2"> <i class="bi bi-trash-fill"></i> Delete </a>
                             </div>`
                 },
-                "width": "25%"
+                "width": "26%",
+                "className": "text-center"
             }
         ]
     });
