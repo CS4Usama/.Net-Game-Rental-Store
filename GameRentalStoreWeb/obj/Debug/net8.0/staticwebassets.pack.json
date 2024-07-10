@@ -21,6 +21,10 @@
       "PackagePath": "staticwebassets\\js\\gamesData.js"
     },
     {
+      "Id": "C:\\Users\\preci\\Downloads\\MEmu Download\\GameRentalStore\\GameRentalStoreWeb\\wwwroot\\js\\rentedGameList.js",
+      "PackagePath": "staticwebassets\\js\\rentedGameList.js"
+    },
+    {
       "Id": "C:\\Users\\preci\\Downloads\\MEmu Download\\GameRentalStore\\GameRentalStoreWeb\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

@@ -10,6 +10,8 @@ namespace GameRentalStore.Models
 
         public int Count { get; set; }
 
+        public bool IsReplaced { get; set; }
+
         [Display(Name = "Rented Date")]
         public DateOnly RentedDate { get; set; }
 

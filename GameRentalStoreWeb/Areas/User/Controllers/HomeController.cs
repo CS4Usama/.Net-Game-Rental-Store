@@ -58,15 +58,16 @@ namespace GameRentalStoreWeb.Areas.User.Controllers
             shoppingCart.PackageId = _unitOfWork.UserPackage.Get(u => u.ApplicationUserId == userId).PackageId;
             shoppingCart.RentedDate = DateOnly.FromDateTime(DateTime.Now);
             shoppingCart.Count = 1;
+            shoppingCart.IsReplaced = false;
             shoppingCart.UserPackageId = _unitOfWork.UserPackage.Get(u => u.ApplicationUserId == userId).Id;
 
 
             // Total Rented Games of Current Loggedin User:>
-            List<ShoppingCart> userCart = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == userId).ToList();
+            List<ShoppingCart> userCart = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == userId && u.IsReplaced == false).ToList();
             List<SubscriptionPackage> packages = _unitOfWork.SubscriptionPackage.GetAll().ToList();
             Game rentedGame = _unitOfWork.Game.Get(g => g.Id == shoppingCart.GameId);
             var newReleasedGameDate = DateOnly.FromDateTime(DateTime.Now).AddMonths(-3);
-            List<ShoppingCart> newReleasedGameCount = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == userId && u.Game.ReleaseDate >= newReleasedGameDate).ToList();
+            List<ShoppingCart> newReleasedGameCount = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == userId && u.Game.ReleaseDate >= newReleasedGameDate && u.IsReplaced == false).ToList();
 
 
             ShoppingCart cartFromDb = _unitOfWork.ShoppingCart.Get(u => u.ApplicationUserId == userId && u.GameId == shoppingCart.GameId);

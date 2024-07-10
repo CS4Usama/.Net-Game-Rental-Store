@@ -2,6 +2,7 @@ using System.Diagnostics;
 using System.Security.Claims;
 using GameRentalStore.DataAccess.Repository.IRepository;
 using GameRentalStore.Models;
+using GameRentalStore.Models.ViewModels;
 using GameRentalStore.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -75,6 +76,25 @@ namespace GameRentalStoreWeb.Areas.User.Controllers
         }
 
 
+        [HttpGet]
+        [Authorize(Roles = SD.Role_User)]
+        public IActionResult RentedList()
+        {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var shoppingCart = _unitOfWork.ShoppingCart.GetAll(includeProperties: "UserPackage,SubscriptionPackage")
+                .Where(u => u.ApplicationUserId == userId).ToList();
+            var userPackage = _unitOfWork.UserPackage.Get(u => u.ApplicationUserId == userId, includeProperties: "SubscriptionPackage");
+
+            var viewModel = new RentedListVM
+            {
+                UserPackage = userPackage,
+                ShoppingCart = shoppingCart
+            };
+
+            return View(viewModel);
+        }
+
+
         #region API CALLS
 
         [HttpGet]
@@ -86,6 +106,65 @@ namespace GameRentalStoreWeb.Areas.User.Controllers
             List<UserPackage> userPkgObj = _unitOfWork.UserPackage.GetAll(includeProperties: "SubscriptionPackage")
                 .Where(u => u.ApplicationUserId == userId).ToList();
             return Json(new { data = userPkgObj });
+        }
+
+
+        [HttpGet]
+        public IActionResult GetAllRentedGames()
+        {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            List<ShoppingCart> userCart = _unitOfWork.ShoppingCart.GetAll(includeProperties: "Game,UserPackage,SubscriptionPackage")
+                .Where(u => u.ApplicationUserId == userId && u.IsReplaced == false).ToList();
+            return Json(new { data = userCart });
+        }
+
+
+        public IActionResult Replace(int? id)
+        {
+            var rentedGameToBeReplaced = _unitOfWork.ShoppingCart.Get(u => u.Id == id);
+            if (rentedGameToBeReplaced == null)
+            {
+                return Json(new { success = false, message = "Error while Replacing" });
+            }
+
+            rentedGameToBeReplaced.IsReplaced = true;
+
+
+            // Checking User Package
+            var userPackage = _unitOfWork.UserPackage.Get(u => u.ApplicationUserId == rentedGameToBeReplaced.ApplicationUserId, includeProperties: "SubscriptionPackage");
+
+            int maxReplaceAllowed = 0;
+            if (userPackage.SubscriptionPackage.PackageName == "Premium")
+            {
+                maxReplaceAllowed = userPackage.SubscriptionPackage.MaxReplacePerMonth;
+            }
+            else if (userPackage.SubscriptionPackage.PackageName == "Premium Max")
+            {
+                maxReplaceAllowed = userPackage.SubscriptionPackage.MaxReplacePerMonth;
+            }
+            else
+            {
+                maxReplaceAllowed = 0;
+            }
+
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            List<ShoppingCart> replacedGames = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == userId && u.IsReplaced == true).ToList();
+
+            if (replacedGames.Count() >= maxReplaceAllowed)
+            {
+                return Json(new
+                {
+                    success = false,
+                    message = $"You can't replace more games because you have already replaced {userPackage.SubscriptionPackage.MaxReplacePerMonth} games according to your subscrption package."
+                });
+            }
+
+            _unitOfWork.ShoppingCart.Update(rentedGameToBeReplaced);
+            _unitOfWork.Save();
+            return Json(new { success = true, message = "Replaced Successfully" });
         }
 
         #endregion

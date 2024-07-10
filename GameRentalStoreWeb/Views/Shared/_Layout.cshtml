@@ -37,6 +37,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" asp-area="User" asp-controller="UserPackage" asp-action="Subscribed">Your Subscription</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="User" asp-controller="UserPackage" asp-action="RentedList">Rented List</a>
+                            </li>
                         }
 
                         @if (User.IsInRole(SD.Role_Admin))
