@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -11,12 +10,6 @@ namespace GameRentalStore.DataAccess.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<int>(
-                name: "PackageId",
-                table: "ShoppingCarts",
-                type: "int",
-                nullable: false,
-                defaultValue: 0);
 
             migrationBuilder.AddColumn<DateOnly>(
                 name: "RentedDate",
@@ -32,25 +25,6 @@ namespace GameRentalStore.DataAccess.Migrations
                 nullable: false,
                 defaultValue: new DateOnly(1, 1, 1));
 
-            migrationBuilder.AddColumn<int>(
-                name: "TotalSubscriptionMonth",
-                table: "ShoppingCarts",
-                type: "int",
-                nullable: false,
-                defaultValue: 0);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ShoppingCarts_PackageId",
-                table: "ShoppingCarts",
-                column: "PackageId");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_ShoppingCarts_SubscriptionPackages_PackageId",
-                table: "ShoppingCarts",
-                column: "PackageId",
-                principalTable: "SubscriptionPackages",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
         }
 
         /// <inheritdoc />

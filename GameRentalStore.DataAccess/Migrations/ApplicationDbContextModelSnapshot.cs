@@ -196,17 +196,30 @@ namespace GameRentalStore.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
                     b.Property<int>("GameId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PackageId")
                         .HasColumnType("int");
 
                     b.Property<DateOnly>("RentedDate")
                         .HasColumnType("date");
+
+                    b.Property<int?>("UserPackageId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ApplicationUserId");
 
                     b.HasIndex("GameId");
+
+                    b.HasIndex("PackageId");
+
+                    b.HasIndex("UserPackageId");
 
                     b.ToTable("ShoppingCarts");
                 });
@@ -278,7 +291,7 @@ namespace GameRentalStore.DataAccess.Migrations
                     b.Property<DateOnly>("ExpiredDate")
                         .HasColumnType("date");
 
-                    b.Property<int?>("PackageId")
+                    b.Property<int>("PackageId")
                         .HasColumnType("int");
 
                     b.Property<DateOnly>("SubscribedDate")
@@ -566,9 +579,23 @@ namespace GameRentalStore.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("GameRentalStore.Models.SubscriptionPackage", "SubscriptionPackage")
+                        .WithMany()
+                        .HasForeignKey("PackageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("GameRentalStore.Models.UserPackage", "UserPackage")
+                        .WithMany()
+                        .HasForeignKey("UserPackageId");
+
                     b.Navigation("ApplicationUser");
 
                     b.Navigation("Game");
+
+                    b.Navigation("SubscriptionPackage");
+
+                    b.Navigation("UserPackage");
                 });
 
             modelBuilder.Entity("GameRentalStore.Models.UserPackage", b =>
@@ -581,7 +608,9 @@ namespace GameRentalStore.DataAccess.Migrations
 
                     b.HasOne("GameRentalStore.Models.SubscriptionPackage", "SubscriptionPackage")
                         .WithMany()
-                        .HasForeignKey("PackageId");
+                        .HasForeignKey("PackageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("ApplicationUser");
 

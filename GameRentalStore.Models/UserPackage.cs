@@ -13,10 +13,10 @@ namespace GameRentalStore.Models
         [ValidateNever]
         public ApplicationUser ApplicationUser { get; set; }
 
-        public int? PackageId { get; set; }
+        public int PackageId { get; set; }
         [ForeignKey("PackageId")]
         [ValidateNever]
-        public SubscriptionPackage? SubscriptionPackage { get; set; }
+        public SubscriptionPackage SubscriptionPackage { get; set; }
 
 
         [Display(Name = "Total Subscription Month")]
