@@ -87,7 +87,7 @@ namespace GameRentalStoreWeb.Areas.User.Controllers
                         return RedirectToAction(nameof(Index));
                     }
                     else
-                    { 
+                    {
                         if (newReleasedGameCount.Count() >= package.RentNewReleasedGame && rentedGame.ReleaseDate >= newReleasedGameDate)
                         {
                             if (package.PackageName == "Basic")
@@ -104,6 +104,14 @@ namespace GameRentalStoreWeb.Areas.User.Controllers
                 }
             }
 
+            if (rentedGame.Quantity <= 0)
+            {
+                TempData["error"] = "Sorry! This Game is Out of Stock.";
+                return RedirectToAction(nameof(Index));
+            }
+
+            rentedGame.Quantity -= 1;
+            _unitOfWork.Game.Update(rentedGame);
 
             _unitOfWork.ShoppingCart.Add(shoppingCart);
             _unitOfWork.Save();
