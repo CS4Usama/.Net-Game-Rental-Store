@@ -99,7 +99,7 @@
                         <div class="row ps-2 mt-1">
                             <h6 class="text-dark text-opacity-75 fw-medium pb-2">
                                 <span class="text-warning">Quantity:&nbsp;</span>
-                                @Model.Game.Quantity
+                                @(Model.Game.Quantity > 0 ? @Model.Game.Quantity : @Html.Raw("<span class='text-danger text-opacity-100'>Out of Stock!</span>"))
                             </h6>
                         </div>
 
