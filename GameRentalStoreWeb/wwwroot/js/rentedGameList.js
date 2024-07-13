@@ -7,22 +7,26 @@ $(document).ready(function () {
 function loadDataTable() {
     var columns = [
         { "data": "game.title", "width": "25%" },
-        { "data": "rentedDate", "width": "25%", "className": "text-center" },
-        { "data": "userPackage.expiredDate", "width": "25%", "className": "text-center" }
+        { "data": "rentedDate", "width": "20%", "className": "text-center" },
+        { "data": "userPackage.expiredDate", "width": "20%", "className": "text-center" }
     ];
 
-    if (subscriptionPackage !== "Basic") {
-        columns.push({
-            "data": "id",
-            "render": function (data) {
-                return `<div class="w-50 btn-group" role="group">
-                            <a onClick="Delete('/user/userpackage/replace/${data}')" class="btn btn-secondary mx-2"> <i class="bi bi-arrow-clockwise"></i> Replace </a>
-                        </div>`;
-            },
-            "width": "25%",
-            "className": "text-center"
-        });
-    }
+
+    columns.push({
+        "data": "id",
+        "render": function (data) {
+            let buttons = `<div class="w-75 btn-group" role="group">
+                        <a href="/user/gamerating/" class="btn btn-secondary mx-2"> <i class="bi bi-hand-index-thumb"></i> Rate It </a>`;
+            if (subscriptionPackage !== "Basic") {
+                buttons += `<a onClick="Replace('/user/userpackage/replace/${data}')" class="btn btn-secondary mx-2"> <i class="bi bi-arrow-clockwise"></i> Replace </a>`;
+            }
+            buttons += `</div>`;
+            return buttons;
+        },
+        "width": "35%",
+        "className": "text-center"
+    });
+    
 
     dataTable = $('#rentedGamesData').DataTable({
         "ajax": { "url": "/User/UserPackage/GetAllRentedGames/GetAll" },
@@ -32,7 +36,7 @@ function loadDataTable() {
 
 
 
-function Delete(url) {
+function Replace(url) {
     Swal.fire({
         title: "Are you sure?",
         text: "You won't be able to revert this!",
@@ -45,7 +49,7 @@ function Delete(url) {
         if (result.isConfirmed) {
             $.ajax({
                 url: url,
-                type: 'DELETE',
+                type: 'POST',
                 success: function (data) {
                     dataTable.ajax.reload();
                     console.log(data);

@@ -95,6 +95,7 @@ namespace GameRentalStoreWeb.Areas.User.Controllers
         }
 
 
+
         #region API CALLS
 
         [HttpGet]
@@ -161,6 +162,10 @@ namespace GameRentalStoreWeb.Areas.User.Controllers
                     message = $"You can't replace more games because you have already replaced {userPackage.SubscriptionPackage.MaxReplacePerMonth} games according to your subscrption package."
                 });
             }
+
+            Game replacedGame = _unitOfWork.Game.Get(g => g.Id == rentedGameToBeReplaced.GameId);
+            replacedGame.Quantity += 1;
+            _unitOfWork.Game.Update(replacedGame);
 
             _unitOfWork.ShoppingCart.Update(rentedGameToBeReplaced);
             _unitOfWork.Save();

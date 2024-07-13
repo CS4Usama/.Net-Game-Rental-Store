@@ -4,6 +4,7 @@
     {
         IGenreRepository Genre { get; }
         IGameRepository Game { get; }
+        IGameRatingRepository GameRating { get; }
         IGameMediaRepository GameMedia { get; }
         IShoppingCartRepository ShoppingCart { get; }
         ISubscriptionPackageRepository SubscriptionPackage { get; }

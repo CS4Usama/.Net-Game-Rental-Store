@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "3NnWXJq0hwHD4AYL4qSLwkcOuHHzt/8q8gM6RjIGe6w=",
+  "Hash": "vBTdRxg6aSSn3JImPUuC6WknpJAwDnHU9X4TVw6Yu5o=",
   "Source": "GameRentalStoreWeb",
   "BasePath": "_content/GameRentalStoreWeb",
   "Mode": "Default",
@@ -1271,12 +1271,12 @@
       "OriginalItemSpec": "wwwroot\\js\\gamesData.js"
     },
     {
-      "Identity": "C:\\Users\\preci\\Downloads\\MEmu Download\\GameRentalStore\\GameRentalStoreWeb\\wwwroot\\js\\rentedGameList.js",
+      "Identity": "C:\\Users\\preci\\Downloads\\MEmu Download\\GameRentalStore\\GameRentalStoreWeb\\wwwroot\\js\\rentedGamesList.js",
       "SourceId": "GameRentalStoreWeb",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\preci\\Downloads\\MEmu Download\\GameRentalStore\\GameRentalStoreWeb\\wwwroot\\",
       "BasePath": "_content/GameRentalStoreWeb",
-      "RelativePath": "js/rentedGameList.js",
+      "RelativePath": "js/rentedGamesList.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1287,7 +1287,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\rentedGameList.js"
+      "OriginalItemSpec": "wwwroot\\js\\rentedGamesList.js"
     },
     {
       "Identity": "C:\\Users\\preci\\Downloads\\MEmu Download\\GameRentalStore\\GameRentalStoreWeb\\wwwroot\\js\\site.js",

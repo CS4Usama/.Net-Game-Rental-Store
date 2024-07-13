@@ -34,6 +34,9 @@ namespace GameRentalStore.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("GameRatingId")
+                        .HasColumnType("int");
+
                     b.Property<int>("GenreId")
                         .HasColumnType("int");
 
@@ -44,9 +47,6 @@ namespace GameRentalStore.DataAccess.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<int>("Rating")
-                        .HasColumnType("int");
-
                     b.Property<DateOnly>("ReleaseDate")
                         .HasColumnType("date");
 
@@ -55,6 +55,8 @@ namespace GameRentalStore.DataAccess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("GameRatingId");
 
                     b.HasIndex("GenreId");
 
@@ -68,7 +70,6 @@ namespace GameRentalStore.DataAccess.Migrations
                             GenreId = 3,
                             Platform = "PC",
                             Quantity = 7,
-                            Rating = 4,
                             ReleaseDate = new DateOnly(2024, 6, 18),
                             Title = "Still Wakes the Deep"
                         },
@@ -79,7 +80,6 @@ namespace GameRentalStore.DataAccess.Migrations
                             GenreId = 4,
                             Platform = "Nintendo Switch",
                             Quantity = 10,
-                            Rating = 3,
                             ReleaseDate = new DateOnly(2024, 4, 9),
                             Title = "Children of the Sun"
                         },
@@ -90,7 +90,6 @@ namespace GameRentalStore.DataAccess.Migrations
                             GenreId = 5,
                             Platform = "PC",
                             Quantity = 8,
-                            Rating = 5,
                             ReleaseDate = new DateOnly(2024, 5, 23),
                             Title = "Galacticare"
                         },
@@ -101,7 +100,6 @@ namespace GameRentalStore.DataAccess.Migrations
                             GenreId = 6,
                             Platform = "Xbox",
                             Quantity = 6,
-                            Rating = 2,
                             ReleaseDate = new DateOnly(2024, 2, 9),
                             Title = "Botany Manor"
                         },
@@ -112,7 +110,6 @@ namespace GameRentalStore.DataAccess.Migrations
                             GenreId = 3,
                             Platform = "Playstation",
                             Quantity = 9,
-                            Rating = 3,
                             ReleaseDate = new DateOnly(2024, 3, 17),
                             Title = "Dead Island 2: SoLA"
                         });
@@ -141,6 +138,39 @@ namespace GameRentalStore.DataAccess.Migrations
                     b.HasIndex("GameId");
 
                     b.ToTable("GameMedias");
+                });
+
+            modelBuilder.Entity("GameRentalStore.Models.GameRating", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ApplicationUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("CartGameId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsApproved")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Rating")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Review")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("CartGameId");
+
+                    b.ToTable("GameRating");
                 });
 
             modelBuilder.Entity("GameRentalStore.Models.Genre", b =>
@@ -548,11 +578,17 @@ namespace GameRentalStore.DataAccess.Migrations
 
             modelBuilder.Entity("GameRentalStore.Models.Game", b =>
                 {
+                    b.HasOne("GameRentalStore.Models.GameRating", "GameRating")
+                        .WithMany()
+                        .HasForeignKey("GameRatingId");
+
                     b.HasOne("GameRentalStore.Models.Genre", "Genre")
                         .WithMany()
                         .HasForeignKey("GenreId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("GameRating");
 
                     b.Navigation("Genre");
                 });
@@ -566,6 +602,25 @@ namespace GameRentalStore.DataAccess.Migrations
                         .IsRequired();
 
                     b.Navigation("Game");
+                });
+
+            modelBuilder.Entity("GameRentalStore.Models.GameRating", b =>
+                {
+                    b.HasOne("GameRentalStore.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("GameRentalStore.Models.ShoppingCart", "ShoppingCart")
+                        .WithMany()
+                        .HasForeignKey("CartGameId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ApplicationUser");
+
+                    b.Navigation("ShoppingCart");
                 });
 
             modelBuilder.Entity("GameRentalStore.Models.ShoppingCart", b =>

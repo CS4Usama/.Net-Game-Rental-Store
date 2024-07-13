@@ -20,7 +20,7 @@
                 <h6 class='text-dark text-opacity-75 fw-medium text-center mt-1 mb-4'>
                     You have subscribed
                     <span class='text-secondary fw-semibold'>{@Model.UserPackage.SubscriptionPackage.PackageName}</span>
-                    Package and your subscription is valid for
+                    package and your subscription is valid for
                     <span class='text-secondary fw-semibold'>{@Model.UserPackage.TotalSubscriptionMonths}</span>
                     months.
                 </h6>
@@ -48,10 +48,10 @@
                     <th>Game Name</th>
                     <th class="text-center">Rented Date</th>
                     <th class="text-center">Expiry Date</th>
-                    @if (@Model?.UserPackage?.SubscriptionPackage?.PackageName != "Basic")
-                    {
-                        <th class="text-center">Replace Game</th>
-                    }
+                    @*@if (@Model?.UserPackage?.SubscriptionPackage?.PackageName != "Basic")
+                {*@
+                    <th class="text-center">Actions</th>
+                    @*}*@
                 </tr>
             </thead>
         </table>

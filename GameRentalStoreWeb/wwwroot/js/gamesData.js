@@ -13,21 +13,21 @@ function loadDataTable() {
             { "data": "genre.name", "width": "12%" },
             { "data": "releaseDate", "width": "10%", "className": "text-center" },
             { "data": "quantity", "width": "10%", "className": "text-center" },
-            {
-                "data": "rating",
-                "render": function (data) {
-                    let stars = '';
-                    for (let i = 0; i < Math.floor(data); i++) {
-                        stars += '<i class="bi bi-star-fill"></i>';
-                    }
-                    for (let i = Math.floor(data); i < 5; i++) {
-                        stars += '<i class="bi bi-star"></i>';
-                    }
-                    return `<span class='rating-stars'>${stars}</span>`;
-                },
-                "width": "10%",
-                "className": "text-center"
-            },
+            //{
+            //    "data": "rating",
+            //    "render": function (data) {
+            //        let stars = '';
+            //        for (let i = 0; i < Math.floor(data); i++) {
+            //            stars += '<i class="bi bi-star-fill"></i>';
+            //        }
+            //        for (let i = Math.floor(data); i < 5; i++) {
+            //            stars += '<i class="bi bi-star"></i>';
+            //        }
+            //        return `<span class='rating-stars'>${stars}</span>`;
+            //    },
+            //    "width": "10%",
+            //    "className": "text-center"
+            //},
             {
                 "data": "id",
                 "render": function (data) {

@@ -17,12 +17,16 @@ namespace GameRentalStore.Models
         [Display(Name = "Release Date")]
         public DateOnly ReleaseDate { get; set; }
         public int Quantity { get; set; }
-        public int Rating { get; set; }
 
         public int GenreId { get; set; }
         [ForeignKey("GenreId")]
         [ValidateNever]
         public Genre Genre { get; set; }
+
+        public int? GameRatingId { get; set; }
+        [ForeignKey("GameRatingId")]
+        [ValidateNever]
+        public GameRating? GameRating { get; set; }
 
         [ValidateNever]
         public List<GameMedia> GameMedias { get; set; }

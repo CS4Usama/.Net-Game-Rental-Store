@@ -40,7 +40,7 @@ namespace GameRentalStoreWeb.Areas.User.Controllers
 
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = SD.Role_User)]
         public IActionResult Details(ShoppingCart shoppingCart)
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;

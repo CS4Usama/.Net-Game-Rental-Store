@@ -13,6 +13,7 @@ namespace GameRentalStore.DataAccess.Data
 
         public DbSet<Genre> Genres { get; set; }
         public DbSet<Game> Games { get; set; }
+        public DbSet<GameRating> GameRating { get; set; }
         public DbSet<GameMedia> GameMedias { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<ShoppingCart> ShoppingCarts { get; set; }
@@ -46,8 +47,7 @@ namespace GameRentalStore.DataAccess.Data
                     Platform = "PC",
                     ReleaseDate = new DateOnly(2024, 06, 18),
                     Quantity = 7,
-                    Rating = 4,
-                    GenreId = 3
+                    GenreId = 3,
                 },
                 new Game
                 {
@@ -57,7 +57,6 @@ namespace GameRentalStore.DataAccess.Data
                     Platform = "Nintendo Switch",
                     ReleaseDate = new DateOnly(2024, 04, 09),
                     Quantity = 10,
-                    Rating = 3,
                     GenreId = 4
                 },
                 new Game
@@ -68,7 +67,6 @@ namespace GameRentalStore.DataAccess.Data
                     Platform = "PC",
                     ReleaseDate = new DateOnly(2024, 05, 23),
                     Quantity = 8,
-                    Rating = 5,
                     GenreId = 5
                 },
                 new Game
@@ -79,7 +77,6 @@ namespace GameRentalStore.DataAccess.Data
                     Platform = "Xbox",
                     ReleaseDate = new DateOnly(2024, 02, 09),
                     Quantity = 6,
-                    Rating = 2,
                     GenreId = 6
                 },
                 new Game
@@ -90,7 +87,6 @@ namespace GameRentalStore.DataAccess.Data
                     Platform = "Playstation",
                     ReleaseDate = new DateOnly(2024, 03, 17),
                     Quantity = 9,
-                    Rating = 3,
                     GenreId = 3
                 }
             );

@@ -230,6 +230,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/preci/Downloads/MEmu Download/GameRentalStore/GameRentalStoreWeb/Areas/User/Views/GameRating/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVXNlclxWaWV3c1xHYW1lUmF0aW5nXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/preci/Downloads/MEmu Download/GameRentalStore/GameRentalStoreWeb/Areas/User/Views/Home/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVXNlclxWaWV3c1xIb21lXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

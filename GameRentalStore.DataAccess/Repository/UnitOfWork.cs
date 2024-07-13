@@ -8,6 +8,7 @@ namespace GameRentalStore.DataAccess.Repository
         private ApplicationDbContext _db;
         public IGenreRepository Genre { get; private set; }
         public IGameRepository Game { get; private set; }
+        public IGameRatingRepository GameRating { get; private set; }
         public IGameMediaRepository GameMedia { get; private set; }
         public IShoppingCartRepository ShoppingCart { get; private set; }
         public ISubscriptionPackageRepository SubscriptionPackage { get; private set; }
@@ -20,6 +21,7 @@ namespace GameRentalStore.DataAccess.Repository
             _db = db;
             Genre = new GenreRepository(_db);
             Game = new GameRepository(_db);
+            GameRating = new GameRatingRepository(_db);
             GameMedia = new GameMediaRepository(_db);
             ShoppingCart = new ShoppingCartRepository(_db);
             SubscriptionPackage = new SubscriptionPackageRepository(_db);

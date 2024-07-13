@@ -15,12 +15,10 @@
     <div class="card-body p-4 my-4">
         <form method="post" class="row" enctype="multipart/form-data">
             <input asp-for="Game.Id" hidden />
-            @*<input asp-for="Game.MediaUrl" hidden />*@
 
             <div class="row">
                 <div class="col-10">
                     <div class="border p-3">
-                        @* <div asp-validation-summary="All"></div> *@
                         <div asp-validation-summary="ModelOnly"></div>
                         <div class="form-floating py-2 col-12">
                             <input asp-for="Game.Title" class="form-control border-0 shadow" />
@@ -46,11 +44,11 @@
                             <label asp-for="Game.Quantity" class="ms-2"></label>
                             <span asp-validation-for="Game.Quantity" class="text-danger"></span>
                         </div>
-                        <div class="form-floating py-2 col-12">
+                        @*<div class="form-floating py-2 col-12">
                             <input asp-for="Game.Rating" class="form-control border-0 shadow" min="0" max="5" value="@(Model.Game.Rating == 0 ? null : Model.Game.Rating)" />
                             <label asp-for="Game.Rating" class="ms-2"></label>
                             <span asp-validation-for="Game.Rating" class="text-danger"></span>
-                        </div>
+                        </div>*@
                         <div class="form-floating py-2 col-12">
                             <select asp-for="@Model.Game.GenreId" asp-items="@Model.GenreList" class="form-select border-0 shadow">
                                 <option disabled selected>--Select Genre--</option>
@@ -62,7 +60,6 @@
                         <div class="form-floating py-2 col-12">
                             <input type="file" name="files" class="form-control border-0 shadow" multiple />
                             <label asp-for="Game.GameMedias" class="ms-2"></label>
-                            @*<span asp-validation-for="Game.MediaUrl" class="text-danger"></span>*@
                         </div>
 
                         <div class="row pt-2">
@@ -86,8 +83,6 @@
                 </div>
 
                 <div class="col-2">
-                    @*<img src="@Model.Game.MediaUrl" alt="Alternate Text" width="100%" style="border-radius:5px; border:1px solid #BBB9B9" />*@
-
                     @if(Model.Game.GameMedias != null)
                         {
                             foreach(var media in Model.Game.GameMedias)
