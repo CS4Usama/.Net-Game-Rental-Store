@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Game>
+﻿@model GameVM
 
 @{
     ViewData["Title"] = "RentalXpress – Home";
@@ -25,7 +25,7 @@
 
 
 <div class="row pb-3">
-    @foreach (var game in Model)
+    @foreach (var game in Model.Games)
     {
         <div class="col-lg-4 col-sm-6">
             <div class="row p-2">
@@ -45,10 +45,28 @@
                                 <p class="card-title text-warning text-center"><b>@game.Platform: @game.Genre.Name</b></p>
                             </div>
                             <div class="pt-1">
-                                <p class="text-dark text-opacity-75 text-center mb-1">Release Date: @game.ReleaseDate</p>
-                                @*<p class="text-dark text-opacity-75 text-center">
-                                    @Html.Raw(GenerateStarRatingHtml(game.Rating))
-                                </p>*@
+                                <p class="text-dark text-opacity-75 text-center mb-2">Release Date: @game.ReleaseDate</p>
+                                @if (Model.GameRating.ContainsKey(game.Id))
+                                {
+                                    var currentGameRating = 0.0;
+                                    var count = 0;
+                                    @foreach (var rating in Model.GameRating[game.Id])
+                                    {
+                                        currentGameRating += rating.Rating;
+                                        count++;
+                                    }
+                                    @if (currentGameRating != 0 && count != 0)
+                                    {
+                                        var ans = (int)Math.Round(currentGameRating / count);
+                                        <p class="text-dark text-opacity-75 text-center">
+                                            @Html.Raw(GenerateStarRatingHtml(ans))
+                                        </p>
+                                    }
+                                }
+                                else
+                                {
+                                    <p class="text-center">No Ratings Available.</p>
+                                }
                             </div>
                         </div>
 

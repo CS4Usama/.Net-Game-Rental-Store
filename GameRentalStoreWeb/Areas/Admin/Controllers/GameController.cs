@@ -21,7 +21,7 @@ namespace GameRentalStore.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
-            List<Game> objGameList = _unitOfWork.Game.GetAll(includeProperties: "Genre,GameRating").ToList();
+            List<Game> objGameList = _unitOfWork.Game.GetAll(includeProperties: "Genre").ToList();
             return View(objGameList);
         }
 
@@ -159,7 +159,7 @@ namespace GameRentalStore.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            List<Game> objGameList = _unitOfWork.Game.GetAll(includeProperties: "Genre,GameRating").ToList();
+            List<Game> objGameList = _unitOfWork.Game.GetAll(includeProperties: "Genre").ToList();
             return Json(new { data = objGameList });
         }
 

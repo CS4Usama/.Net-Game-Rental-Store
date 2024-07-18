@@ -2,6 +2,7 @@ using System.Diagnostics;
 using System.Security.Claims;
 using GameRentalStore.DataAccess.Repository.IRepository;
 using GameRentalStore.Models;
+using GameRentalStore.Models.ViewModels;
 using GameRentalStore.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -24,7 +25,17 @@ namespace GameRentalStoreWeb.Areas.User.Controllers
         public IActionResult Index()
         {
             IEnumerable<Game> gameList = _unitOfWork.Game.GetAll(includeProperties: "Genre,GameMedias");
-            return View(gameList);
+            List<GameRating> gameRatingList = _unitOfWork.GameRating.GetAll().ToList();
+            var gameRating = gameList.ToDictionary(
+                game => game.Id,
+                game => gameRatingList.Where(rating => rating.GameId == game.Id).ToList()
+            );
+            var viewModel = new GameVM
+            {
+                Games = gameList,
+                GameRating = gameRating
+            };
+            return View(viewModel);
         }
 
         public IActionResult Details(int gameId)
@@ -32,7 +43,6 @@ namespace GameRentalStoreWeb.Areas.User.Controllers
             ShoppingCart cart = new()
             {
                 Game = _unitOfWork.Game.Get(u => u.Id == gameId, includeProperties: "Genre,GameMedias"),
-                //Count = 1,
                 GameId = gameId
             };
             return View(cart);
