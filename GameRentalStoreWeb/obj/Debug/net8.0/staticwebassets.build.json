@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "vBTdRxg6aSSn3JImPUuC6WknpJAwDnHU9X4TVw6Yu5o=",
+  "Hash": "Z8wlombCh8w6wPqA/4XAGyTudmck7LXZeDkf0d4KiiE=",
   "Source": "GameRentalStoreWeb",
   "BasePath": "_content/GameRentalStoreWeb",
   "Mode": "Default",
@@ -1252,6 +1252,25 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
+      "Identity": "C:\\Users\\preci\\Downloads\\MEmu Download\\GameRentalStore\\GameRentalStoreWeb\\wwwroot\\js\\gameRatingList.js",
+      "SourceId": "GameRentalStoreWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\preci\\Downloads\\MEmu Download\\GameRentalStore\\GameRentalStoreWeb\\wwwroot\\",
+      "BasePath": "_content/GameRentalStoreWeb",
+      "RelativePath": "js/gameRatingList.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\gameRatingList.js"
+    },
+    {
       "Identity": "C:\\Users\\preci\\Downloads\\MEmu Download\\GameRentalStore\\GameRentalStoreWeb\\wwwroot\\js\\gamesData.js",
       "SourceId": "GameRentalStoreWeb",
       "SourceType": "Discovered",
@@ -1269,6 +1288,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\gamesData.js"
+    },
+    {
+      "Identity": "C:\\Users\\preci\\Downloads\\MEmu Download\\GameRentalStore\\GameRentalStoreWeb\\wwwroot\\js\\ratingApproval.js",
+      "SourceId": "GameRentalStoreWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\preci\\Downloads\\MEmu Download\\GameRentalStore\\GameRentalStoreWeb\\wwwroot\\",
+      "BasePath": "_content/GameRentalStoreWeb",
+      "RelativePath": "js/ratingApproval.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\ratingApproval.js"
     },
     {
       "Identity": "C:\\Users\\preci\\Downloads\\MEmu Download\\GameRentalStore\\GameRentalStoreWeb\\wwwroot\\js\\rentedGamesList.js",

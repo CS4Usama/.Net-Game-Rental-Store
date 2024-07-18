@@ -40,6 +40,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" asp-area="User" asp-controller="UserPackage" asp-action="RentedList">Rented List</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="User" asp-controller="GameRating" asp-action="GameRatings">Your Ratings</a>
+                            </li>
                         }
 
                         @if (User.IsInRole(SD.Role_Admin))
@@ -75,6 +78,10 @@
                                     <li class="nav-item">
                                         <a class="dropdown-item" asp-area="Admin" asp-controller="User"
                                            asp-action="Index">Manage Users</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="dropdown-item" asp-area="Admin" asp-controller="RatingApproval"
+                                           asp-action="Index">Manage Ratings</a>
                                     </li>
                                 </ul>
                             </li>

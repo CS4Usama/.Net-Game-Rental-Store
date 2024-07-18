@@ -23,12 +23,10 @@ namespace GameRentalStore.Models
         [ValidateNever]
         public Genre Genre { get; set; }
 
-        public int? GameRatingId { get; set; }
-        [ForeignKey("GameRatingId")]
-        [ValidateNever]
-        public GameRating? GameRating { get; set; }
-
         [ValidateNever]
         public List<GameMedia> GameMedias { get; set; }
+
+        [ValidateNever]
+        public List<GameRating> GameRatings { get; set; }
     }
 }

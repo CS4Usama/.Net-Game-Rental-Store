@@ -48,10 +48,7 @@
                     <th>Game Name</th>
                     <th class="text-center">Rented Date</th>
                     <th class="text-center">Expiry Date</th>
-                    @*@if (@Model?.UserPackage?.SubscriptionPackage?.PackageName != "Basic")
-                {*@
                     <th class="text-center">Actions</th>
-                    @*}*@
                 </tr>
             </thead>
         </table>
@@ -65,5 +62,5 @@
 </script>
 
 @section Scripts {
-    <script src="~/js/rentedGameList.js"></script>
+    <script src="~/js/rentedGamesList.js"></script>
 }

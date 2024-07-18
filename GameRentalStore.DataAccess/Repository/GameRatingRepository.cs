@@ -14,7 +14,7 @@ namespace GameRentalStore.DataAccess.Repository
 
         public void Update(GameRating obj)
         {
-            _db.GameRating.Update(obj);
+            _db.GameRatings.Update(obj);
         }
     }
 }

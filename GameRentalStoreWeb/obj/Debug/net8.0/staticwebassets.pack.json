@@ -17,8 +17,16 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\preci\\Downloads\\MEmu Download\\GameRentalStore\\GameRentalStoreWeb\\wwwroot\\js\\gameRatingList.js",
+      "PackagePath": "staticwebassets\\js\\gameRatingList.js"
+    },
+    {
       "Id": "C:\\Users\\preci\\Downloads\\MEmu Download\\GameRentalStore\\GameRentalStoreWeb\\wwwroot\\js\\gamesData.js",
       "PackagePath": "staticwebassets\\js\\gamesData.js"
+    },
+    {
+      "Id": "C:\\Users\\preci\\Downloads\\MEmu Download\\GameRentalStore\\GameRentalStoreWeb\\wwwroot\\js\\ratingApproval.js",
+      "PackagePath": "staticwebassets\\js\\ratingApproval.js"
     },
     {
       "Id": "C:\\Users\\preci\\Downloads\\MEmu Download\\GameRentalStore\\GameRentalStoreWeb\\wwwroot\\js\\rentedGamesList.js",

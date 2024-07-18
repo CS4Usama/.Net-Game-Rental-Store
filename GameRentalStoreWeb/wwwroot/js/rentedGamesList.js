@@ -16,9 +16,9 @@ function loadDataTable() {
         "data": "id",
         "render": function (data) {
             let buttons = `<div class="w-75 btn-group" role="group">
-                        <a href="/user/gamerating/" class="btn btn-secondary mx-2"> <i class="bi bi-hand-index-thumb"></i> Rate It </a>`;
+                        <a href="/user/gamerating?rentedGameId=${data}" class="btn btn-secondary mx-2"> <i class="bi bi-hand-index-thumb"></i> &nbsp;Rate It </a>`;
             if (subscriptionPackage !== "Basic") {
-                buttons += `<a onClick="Replace('/user/userpackage/replace/${data}')" class="btn btn-secondary mx-2"> <i class="bi bi-arrow-clockwise"></i> Replace </a>`;
+                buttons += `<a onClick="Replace('/user/userpackage/replace/${data}')" class="btn btn-secondary mx-2"> <i class="bi bi-arrow-clockwise"></i> &nbsp;Replace </a>`;
             }
             buttons += `</div>`;
             return buttons;

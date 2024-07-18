@@ -34,9 +34,6 @@ namespace GameRentalStore.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("GameRatingId")
-                        .HasColumnType("int");
-
                     b.Property<int>("GenreId")
                         .HasColumnType("int");
 
@@ -55,8 +52,6 @@ namespace GameRentalStore.DataAccess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("GameRatingId");
 
                     b.HasIndex("GenreId");
 
@@ -138,6 +133,183 @@ namespace GameRentalStore.DataAccess.Migrations
                     b.HasIndex("GameId");
 
                     b.ToTable("GameMedias");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            GameId = 1,
+                            MediaType = "image",
+                            MediaUrl = "\\media\\games\\game-1\\4a77a065-a27f-4c79-9d45-90a0e6c7015b.webp"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            GameId = 1,
+                            MediaType = "video",
+                            MediaUrl = "https://www.youtube.com/embed/3svNksUg_BM"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            GameId = 1,
+                            MediaType = "image",
+                            MediaUrl = "\\media\\games\\game-1\\ea3d5b3c-c20a-4d4b-affc-0c4d0da61430.webp"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            GameId = 1,
+                            MediaType = "image",
+                            MediaUrl = "\\media\\games\\game-1\\0e07a077-5f67-4d7e-8c1e-863e5dcead70.webp"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            GameId = 1,
+                            MediaType = "image",
+                            MediaUrl = "\\media\\games\\game-1\\c6402a57-debe-48f6-8428-d60ad4997254.webp"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            GameId = 2,
+                            MediaType = "image",
+                            MediaUrl = "\\media\\games\\game-2\\e7378d53-6faa-47f8-8c67-b4ecfd9c41f9.webp"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            GameId = 2,
+                            MediaType = "video",
+                            MediaUrl = "https://www.youtube.com/embed/Jp4miWjVHtY"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            GameId = 2,
+                            MediaType = "image",
+                            MediaUrl = "\\media\\games\\game-2\\2ead7900-d473-47af-b367-93bb8a09c5f6.webp"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            GameId = 2,
+                            MediaType = "image",
+                            MediaUrl = "\\media\\games\\game-2\\94066954-7138-4a2e-924d-f149e300fb7a.webp"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            GameId = 2,
+                            MediaType = "image",
+                            MediaUrl = "\\media\\games\\game-2\\1ffb394b-aa03-44b4-a79a-bee9b771b05b.webp"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            GameId = 3,
+                            MediaType = "image",
+                            MediaUrl = "\\media\\games\\game-3\\8a2bb983-fda4-4015-9697-3442d9c989ee.webp"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            GameId = 3,
+                            MediaType = "video",
+                            MediaUrl = "https://www.youtube.com/embed/Qp0v7IVw4aA"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            GameId = 3,
+                            MediaType = "image",
+                            MediaUrl = "\\media\\games\\game-3\\77a06a13-f83a-40a0-af26-31ae3f8ef86e.webp"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            GameId = 3,
+                            MediaType = "image",
+                            MediaUrl = "\\media\\games\\game-3\\990afc77-95cd-41b5-9c28-4da1bf8a6688.webp"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            GameId = 3,
+                            MediaType = "image",
+                            MediaUrl = "\\media\\games\\game-3\\f5ad9b4e-08a0-453e-89eb-500aaf156685.webp"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            GameId = 4,
+                            MediaType = "image",
+                            MediaUrl = "\\media\\games\\game-4\\9972760f-bb59-4319-b145-357963e8f4a3.webp"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            GameId = 4,
+                            MediaType = "video",
+                            MediaUrl = "https://www.youtube.com/embed/vJcp6CMkUuA"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            GameId = 4,
+                            MediaType = "image",
+                            MediaUrl = "\\media\\games\\game-4\\9f30b7b1-aacb-42a9-a5f6-8473d7809567.webp"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            GameId = 4,
+                            MediaType = "image",
+                            MediaUrl = "\\media\\games\\game-4\\209c58e2-ff8d-4875-884e-f1e46e5e05af.webp"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            GameId = 4,
+                            MediaType = "image",
+                            MediaUrl = "\\media\\games\\game-4\\8d54d69b-2e58-4ea2-b71f-c6c9a10fc54b.webp"
+                        },
+                        new
+                        {
+                            Id = 21,
+                            GameId = 5,
+                            MediaType = "image",
+                            MediaUrl = "\\media\\games\\game-5\\0cd268dc-36f5-488d-95e2-b2ce6c2791aa.webp"
+                        },
+                        new
+                        {
+                            Id = 22,
+                            GameId = 5,
+                            MediaType = "video",
+                            MediaUrl = "https://www.youtube.com/embed/xC9FXqO5C2s"
+                        },
+                        new
+                        {
+                            Id = 23,
+                            GameId = 5,
+                            MediaType = "image",
+                            MediaUrl = "\\media\\games\\game-5\\3a1fba0d-5b69-493f-8f3e-fc7572515f65.webp"
+                        },
+                        new
+                        {
+                            Id = 24,
+                            GameId = 5,
+                            MediaType = "image",
+                            MediaUrl = "\\media\\games\\game-5\\ca3d1eb9-8750-495f-8337-ac4a92eda825.webp"
+                        },
+                        new
+                        {
+                            Id = 25,
+                            GameId = 5,
+                            MediaType = "image",
+                            MediaUrl = "\\media\\games\\game-5\\c19de547-8615-4abd-a729-dca5d8fb601e.webp"
+                        });
                 });
 
             modelBuilder.Entity("GameRentalStore.Models.GameRating", b =>
@@ -149,19 +321,22 @@ namespace GameRentalStore.DataAccess.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ApplicationUserId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("CartGameId")
                         .HasColumnType("int");
 
-                    b.Property<bool>("IsApproved")
-                        .HasColumnType("bit");
+                    b.Property<int>("GameId")
+                        .HasColumnType("int");
 
                     b.Property<int>("Rating")
                         .HasColumnType("int");
 
                     b.Property<string>("Review")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -170,7 +345,9 @@ namespace GameRentalStore.DataAccess.Migrations
 
                     b.HasIndex("CartGameId");
 
-                    b.ToTable("GameRating");
+                    b.HasIndex("GameId");
+
+                    b.ToTable("GameRatings");
                 });
 
             modelBuilder.Entity("GameRentalStore.Models.Genre", b =>
@@ -211,6 +388,24 @@ namespace GameRentalStore.DataAccess.Migrations
                             Id = 3,
                             DisplayOrder = 3,
                             Name = "Role Playing"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            DisplayOrder = 4,
+                            Name = "Shooter"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            DisplayOrder = 5,
+                            Name = "Simulator"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            DisplayOrder = 6,
+                            Name = "Puzzle"
                         });
                 });
 
@@ -578,17 +773,11 @@ namespace GameRentalStore.DataAccess.Migrations
 
             modelBuilder.Entity("GameRentalStore.Models.Game", b =>
                 {
-                    b.HasOne("GameRentalStore.Models.GameRating", "GameRating")
-                        .WithMany()
-                        .HasForeignKey("GameRatingId");
-
                     b.HasOne("GameRentalStore.Models.Genre", "Genre")
                         .WithMany()
                         .HasForeignKey("GenreId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("GameRating");
 
                     b.Navigation("Genre");
                 });
@@ -608,9 +797,7 @@ namespace GameRentalStore.DataAccess.Migrations
                 {
                     b.HasOne("GameRentalStore.Models.ApplicationUser", "ApplicationUser")
                         .WithMany()
-                        .HasForeignKey("ApplicationUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ApplicationUserId");
 
                     b.HasOne("GameRentalStore.Models.ShoppingCart", "ShoppingCart")
                         .WithMany()
@@ -618,7 +805,15 @@ namespace GameRentalStore.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("GameRentalStore.Models.Game", "Game")
+                        .WithMany("GameRatings")
+                        .HasForeignKey("GameId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("ApplicationUser");
+
+                    b.Navigation("Game");
 
                     b.Navigation("ShoppingCart");
                 });
@@ -729,6 +924,8 @@ namespace GameRentalStore.DataAccess.Migrations
             modelBuilder.Entity("GameRentalStore.Models.Game", b =>
                 {
                     b.Navigation("GameMedias");
+
+                    b.Navigation("GameRatings");
                 });
 #pragma warning restore 612, 618
         }

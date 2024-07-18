@@ -26,6 +26,7 @@ namespace GameRentalStore.DataAccess.Repository
                 objFromDb.Quantity = obj.Quantity;
                 objFromDb.GenreId = obj.GenreId;
                 objFromDb.GameMedias = obj.GameMedias;
+                objFromDb.GameRatings = obj.GameRatings;
             }
         }
     }

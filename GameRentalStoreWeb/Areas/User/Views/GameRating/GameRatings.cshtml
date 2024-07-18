@@ -1,0 +1,44 @@
+﻿@model List<GameRating>
+
+@{
+    ViewData["Title"] = "Your Game Ratings";
+}
+
+
+
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2">Your Game Rating List</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <div class="row pb-3">
+            <div class="col-6">
+            </div>
+            <div class="col-12 text-center mb-2">
+                <a asp-controller="UserPackage" asp-action="RentedList" class="btn btn-primary">
+                    <i class="bi bi-plus-circle"></i>&nbsp; Rate Another Game
+                </a>
+            </div>
+        </div>
+
+        <table id="userGameRatings" class="table table-bordered table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Game Name</th>
+                    <th>Reviews</th>
+                    <th class="text-center">Ratings</th>
+                    <th class="text-center">Status</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script src="~/js/gameRatingList.js"></script>
+}

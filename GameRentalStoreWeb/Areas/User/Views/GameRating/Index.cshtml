@@ -8,37 +8,62 @@
     <div class="card-header bg-secondary bg-gradient ml-0 py-3">
         <div class="row">
             <div class="col-12 text-center pt-2">
-                <h3 class="text-white">Rate and Review Your Rented Game by Sharing Your Experience</h3>
+                @if (Model?.GameRating?.Id != 0)
+                {
+                    <h3 class="text-white">Update Your Rating and Review</h3>
+                }
+                else
+                {
+                    <h3 class="text-white">Rate and Review Your Rented Game by Sharing Your Experience</h3>
+                }
             </div>
         </div>
     </div>
     <div class="card-body p-4">
-        <form method="post" class="row" enctype="multipart/form-data">
+        <form method="post" asp-action="Index" asp-controller="GameRating" class="row" enctype="multipart/form-data">
             <input asp-for="ShoppingCart.Id" hidden />
+            <input asp-for="Game.Id" hidden />
 
-            <h5 class='text-dark text-opacity-75 fw-medium text-center mt-1 mb-4'>
-                Game.Title
+            <h5 class='text-secondary text-opacity-75 fw-semibold text-center mt-1 mb-4'>
+                @Model?.Game?.Title?.ToUpper()
             </h5>
 
             <div class="row">
                 <div class="col-12">
                     <div class="border p-3">
                         <div asp-validation-summary="ModelOnly"></div>
-                        <div class="form-floating py-2 col-12">
-                            <input asp-for="GameRating.Rating" class="form-control border-0 shadow" min="0" max="5" />
-                            <label asp-for="GameRating.Rating" class="ms-2"></label>
+                        <div class="py-2 col-12">
+                            <label asp-for="GameRating.Rating" class="ms-2 text-muted me-5">Rating: </label>
+                            <span class="rating" data-rated="@Model?.GameRating?.Rating ?? 0">
+                                <span class="star bi bi-star" data-value="1"></span>
+                                <span class="star bi bi-star" data-value="2"></span>
+                                <span class="star bi bi-star" data-value="3"></span>
+                                <span class="star bi bi-star" data-value="4"></span>
+                                <span class="star bi bi-star" data-value="5"></span>
+                            </span>
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" id="ratingInput" name="GameRating.Rating" asp-for="GameRating.Rating" value="@Model?.GameRating?.Rating ?? 0" min="1" max="5" />
                             <span asp-validation-for="GameRating.Rating" class="text-danger"></span>
                         </div>
+
                         <div class="py-2 col-12">
                             <label asp-for="GameRating.Review" class="ms-2 text-muted"></label>
                             <textarea asp-for="GameRating.Review" class="form-control border-0 shadow"></textarea>
                         </div>
                         <div class="row pt-2">
                             <div class="col-6 col-md-3">
-                                <button type="submit" class="btn btn-primary form-control">Submit</button>
+                                @if (Model?.GameRating?.Id != 0)
+                                {
+                                    <button type="submit" class="btn btn-primary form-control">Update</button>
+                                }
+                                else
+                                {
+                                    <button type="submit" class="btn btn-primary form-control">Submit</button>
+                                }
                             </div>
                             <div class="col-6 col-md-3">
-                                <a asp-controller="UserPackage" asp-action="RentedList" class="btn btn-outline-secondary border form-control">
+                                <a asp-controller="UserPackage" asp-action="RentedList"
+                                   class="btn btn-outline-secondary border form-control">
                                     Back to List
                                 </a>
                             </div>
@@ -60,9 +85,61 @@
             plugins: 'anchor autolink charmap codesample emoticons lists table visualblocks wordcount',
             toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent',
         });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            let initialRating = document.querySelector('.rating').getAttribute('data-rated');
+            highlightStars(initialRating);
+
+            document.querySelectorAll('.star').forEach(star => {
+                star.addEventListener('mouseover', (e) => {
+                    let value = e.target.getAttribute('data-value');
+                    highlightStars(value);
+                });
+
+                star.addEventListener('mouseout', () => {
+                    let rated = document.querySelector('.rating').getAttribute('data-rated');
+                    highlightStars(rated);
+                });
+
+                star.addEventListener('click', (e) => {
+                    let value = e.target.getAttribute('data-value');
+                    document.querySelector('.rating').setAttribute('data-rated', value);
+                    document.getElementById('ratingInput').value = value;
+                    saveRating();
+                });
+            });
+        });
+
+        function highlightStars(value) {
+            document.querySelectorAll('.star').forEach(star => {
+                if (star.getAttribute('data-value') <= value) {
+                    star.classList.remove('bi-star');
+                    star.classList.add('bi-star-fill');
+                    star.classList.add('hover');
+                } else {
+                    star.classList.remove('hover');
+                    star.classList.remove('bi-star-fill');
+                    star.classList.add('bi-star');
+                }
+            });
+        }
     </script>
 
     @{
         <partial name="_ValidationScriptsPartial" />
     }
 }
+
+
+
+<style>
+    .star {
+        font-size: 2rem;
+        cursor: pointer;
+        color: gray;
+    }
+
+    .star.hover, .star.selected {
+        color: gold;
+    }
+</style>
