@@ -33,7 +33,7 @@
                     <div class="card border-0 p-3 shadow border-top border-5 rounded">
                         @if (game.GameMedias != null && game.GameMedias.Count() > 0)
                         {
-                            <img src="@game.GameMedias.FirstOrDefault().MediaUrl" class="card-img-top rounded" />
+                            <img src="@game?.GameMedias?.FirstOrDefault()?.MediaUrl" class="card-img-top rounded" />
                         }
                         else
                         {

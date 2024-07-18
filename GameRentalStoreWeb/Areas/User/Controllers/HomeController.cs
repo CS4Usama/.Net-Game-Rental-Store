@@ -40,12 +40,15 @@ namespace GameRentalStoreWeb.Areas.User.Controllers
 
         public IActionResult Details(int gameId)
         {
-            ShoppingCart cart = new()
+            var game = _unitOfWork.Game.Get(u => u.Id == gameId, includeProperties: "Genre,GameMedias");
+            var gameRating = _unitOfWork.GameRating.GetAll(includeProperties: "ApplicationUser").Where(r => r.GameId == gameId).ToList();
+
+            var viewModel = new ShoppingCartVM
             {
-                Game = _unitOfWork.Game.Get(u => u.Id == gameId, includeProperties: "Genre,GameMedias"),
-                GameId = gameId
+                Game = game,
+                GameRating = gameRating
             };
-            return View(cart);
+            return View(viewModel);
         }
 
 

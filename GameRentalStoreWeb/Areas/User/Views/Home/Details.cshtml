@@ -1,12 +1,33 @@
-﻿@model ShoppingCart
+﻿@model ShoppingCartVM
 
 @{
     ViewData["Title"] = "Game Details";
 }
 
 
+@functions {
+    public string GenerateStarRatingHtml(int rating)
+    {
+        int emptyStars = 5 - rating;
+        string stars = "";
+
+        for (int i = 0; i < rating; i++)
+        {
+            stars += @"<i class='bi bi-star-fill text-warning'></i>";
+        }
+        for (int i = 0; i < emptyStars; i++)
+        {
+            stars += @"<i class='bi bi-star text-warning'></i>";
+        }
+
+        return stars;
+    }
+}
+
+
+
 <form method="post">
-    <input asp-for="GameId" hidden />
+    <input asp-for="Game.Id" hidden />
 
     <div class="card shadow border-0 mt-4 mb-4">
         <div class="card-header bg-secondary bg-gradient text-light py-4">
@@ -54,7 +75,7 @@
                                                             allowfullscreen>
                                                     </iframe>
                                                 }
-                                                @if(mediaWithIndex.Media.MediaUrl.Contains("games"))
+                                                @if (mediaWithIndex.Media.MediaUrl.Contains("games"))
                                                 {
                                                     <video class="d-block w-100" height="350px" controls>
                                                         <source src="@mediaWithIndex.Media.MediaUrl" type="video/mp4">
@@ -97,9 +118,36 @@
                             </h6>
                         </div>
                         <div class="row ps-2 mt-1">
-                            <h6 class="text-dark text-opacity-75 fw-medium pb-2">
+                            <h6 class="text-dark text-opacity-75 fw-medium pb-1">
                                 <span class="text-warning">Quantity:&nbsp;</span>
                                 @(Model.Game.Quantity > 0 ? @Model.Game.Quantity : @Html.Raw("<span class='text-danger text-opacity-100'>Out of Stock!</span>"))
+                            </h6>
+                        </div>
+                        <div class="row ps-2 mt-1">
+                            <h6 class="text-dark text-opacity-75 fw-medium pb-2">
+                                Ratings: &nbsp;
+
+                                @if (Model.GameRating != null && Model.GameRating.Count > 0)
+                                {
+                                    var currentGameRating = 0.0;
+                                    var count = 0;
+                                    @foreach (var rating in Model.GameRating)
+                                    {
+                                        currentGameRating += rating.Rating;
+                                        count++;
+                                    }
+                                    @if (currentGameRating != 0 && count != 0)
+                                    {
+                                        var ans = (int)Math.Round(currentGameRating / count);
+                                        <span>
+                                            @Html.Raw(GenerateStarRatingHtml(ans))
+                                        </span>
+                                    }
+                                }
+                                else
+                                {
+                                    <p class="text-center">No Ratings Available.</p>
+                                }
                             </h6>
                         </div>
 
@@ -122,5 +170,24 @@
                 </div>
             </div>
         </div>
+
+
+        @if (Model?.GameRating != null && Model?.GameRating?.Count > 0)
+        {
+            <div class="row mt-3 mb-4">
+                <div class="col-10 offset-lg-1">
+                    <h3 class="fw-bolder text-warning mb-2">Reviews:</h3>
+                    @foreach (var rating in Model.GameRating)
+                    {
+                        <div class="border rounded p-3 mb-3" style="background-color: #FBFBFB">
+                            <h6 class="fw-bolder text-uppercase mb-2">@rating.ApplicationUser.Name</h6>
+                            <div class="rounded p-3 pb-1" style="background-color: #E7E7E7">
+                                @Html.Raw(rating.Review)
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
     </div>
 </form>
