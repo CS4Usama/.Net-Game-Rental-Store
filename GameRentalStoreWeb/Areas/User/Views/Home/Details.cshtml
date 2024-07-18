@@ -124,31 +124,30 @@
                             </h6>
                         </div>
                         <div class="row ps-2 mt-1">
-                            <h6 class="text-dark text-opacity-75 fw-medium pb-2">
-                                Ratings: &nbsp;
-
-                                @if (Model.GameRating != null && Model.GameRating.Count > 0)
+                            @if (Model.GameRating != null && Model.GameRating.Count > 0)
+                            {
+                                var currentGameRating = 0.0;
+                                var count = 0;
+                                @foreach (var rating in Model.GameRating)
                                 {
-                                    var currentGameRating = 0.0;
-                                    var count = 0;
-                                    @foreach (var rating in Model.GameRating)
-                                    {
-                                        currentGameRating += rating.Rating;
-                                        count++;
-                                    }
-                                    @if (currentGameRating != 0 && count != 0)
-                                    {
-                                        var ans = (int)Math.Round(currentGameRating / count);
+                                    currentGameRating += rating.Rating;
+                                    count++;
+                                }
+                                @if (currentGameRating != 0 && count != 0)
+                                {
+                                    var ans = (int)Math.Round(currentGameRating / count);
+                                    <h6 class="text-dark text-opacity-75 fw-medium pb-2">
+                                        Ratings: &nbsp;
                                         <span>
                                             @Html.Raw(GenerateStarRatingHtml(ans))
                                         </span>
-                                    }
+                                    </h6>
                                 }
-                                else
-                                {
-                                    <p class="text-center">No Ratings Available.</p>
-                                }
-                            </h6>
+                            }
+                            else
+                            {
+                                <p class="text-dark text-opacity-75 fw-medium pb-2 text-center">No Ratings Available</p>
+                            }
                         </div>
 
                         <div class="border-bottom border-2 mt-3 w-50"></div>
