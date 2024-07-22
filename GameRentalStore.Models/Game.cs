@@ -27,6 +27,6 @@ namespace GameRentalStore.Models
         public List<GameMedia> GameMedias { get; set; }
 
         [ValidateNever]
-        public List<GameRating> GameRatings { get; set; }
+        public List<GameRating>? GameRatings { get; set; }
     }
 }

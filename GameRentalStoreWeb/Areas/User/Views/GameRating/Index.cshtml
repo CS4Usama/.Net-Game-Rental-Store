@@ -34,7 +34,7 @@
                         <div asp-validation-summary="ModelOnly"></div>
                         <div class="py-2 col-12">
                             <label asp-for="GameRating.Rating" class="ms-2 text-muted me-5">Rating: </label>
-                            <span class="rating" data-rated="@Model?.GameRating?.Rating ?? 0">
+                            <span class="rating" data-rated="@Model?.GameRating?.Rating">
                                 <span class="star bi bi-star" data-value="1"></span>
                                 <span class="star bi bi-star" data-value="2"></span>
                                 <span class="star bi bi-star" data-value="3"></span>
@@ -42,7 +42,7 @@
                                 <span class="star bi bi-star" data-value="5"></span>
                             </span>
                             @Html.AntiForgeryToken()
-                            <input type="hidden" id="ratingInput" name="GameRating.Rating" asp-for="GameRating.Rating" value="@Model?.GameRating?.Rating ?? 0" min="1" max="5" />
+                            <input type="hidden" id="ratingInput" name="GameRating.Rating" asp-for="GameRating.Rating" value="@Model?.GameRating?.Rating" min="1" max="5" />
                             <span asp-validation-for="GameRating.Rating" class="text-danger"></span>
                         </div>
 

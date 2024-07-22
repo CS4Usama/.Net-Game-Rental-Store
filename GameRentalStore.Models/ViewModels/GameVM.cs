@@ -6,6 +6,8 @@ namespace GameRentalStore.Models.ViewModels
     public class GameVM
     {
         public Game Game { get; set; }
+
+        [ValidateNever]
         public IEnumerable<Game> Games { get; set; }
 
         [ValidateNever]

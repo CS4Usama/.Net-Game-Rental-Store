@@ -55,7 +55,7 @@ namespace GameRentalStore.DataAccess.Migrations
 
                     b.HasIndex("GenreId");
 
-                    b.ToTable("Games");
+                    b.ToTable("Games", (string)null);
 
                     b.HasData(
                         new
@@ -132,7 +132,7 @@ namespace GameRentalStore.DataAccess.Migrations
 
                     b.HasIndex("GameId");
 
-                    b.ToTable("GameMedias");
+                    b.ToTable("GameMedias", (string)null);
 
                     b.HasData(
                         new
@@ -347,7 +347,7 @@ namespace GameRentalStore.DataAccess.Migrations
 
                     b.HasIndex("GameId");
 
-                    b.ToTable("GameRatings");
+                    b.ToTable("GameRatings", (string)null);
                 });
 
             modelBuilder.Entity("GameRentalStore.Models.Genre", b =>
@@ -368,7 +368,7 @@ namespace GameRentalStore.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Genres");
+                    b.ToTable("Genres", (string)null);
 
                     b.HasData(
                         new
@@ -449,7 +449,7 @@ namespace GameRentalStore.DataAccess.Migrations
 
                     b.HasIndex("UserPackageId");
 
-                    b.ToTable("ShoppingCarts");
+                    b.ToTable("ShoppingCarts", (string)null);
                 });
 
             modelBuilder.Entity("GameRentalStore.Models.SubscriptionPackage", b =>
@@ -475,7 +475,7 @@ namespace GameRentalStore.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("SubscriptionPackages");
+                    b.ToTable("SubscriptionPackages", (string)null);
 
                     b.HasData(
                         new
@@ -534,7 +534,7 @@ namespace GameRentalStore.DataAccess.Migrations
 
                     b.HasIndex("PackageId");
 
-                    b.ToTable("UserPackages");
+                    b.ToTable("UserPackages", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

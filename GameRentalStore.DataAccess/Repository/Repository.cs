@@ -17,7 +17,15 @@ namespace GameRentalStore.DataAccess.Repository
 
         public IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter, string? includeProperties = null, bool tracked = false)
         {
-            IQueryable<T> query = dbSet;
+            IQueryable<T> query;
+            if (tracked)
+            {
+                query = dbSet;
+            }
+            else
+            {
+                query = dbSet.AsNoTracking();
+            }
             if (filter != null)
             {
                 query = query.Where(filter);

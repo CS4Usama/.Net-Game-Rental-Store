@@ -25,7 +25,7 @@ namespace GameRentalStoreWeb.Areas.User.Controllers
         public IActionResult Index()
         {
             IEnumerable<Game> gameList = _unitOfWork.Game.GetAll(includeProperties: "Genre,GameMedias");
-            List<GameRating> gameRatingList = _unitOfWork.GameRating.GetAll().ToList();
+            List<GameRating> gameRatingList = _unitOfWork.GameRating.GetAll(g => g.Status == "Approved").ToList();
             var gameRating = gameList.ToDictionary(
                 game => game.Id,
                 game => gameRatingList.Where(rating => rating.GameId == game.Id).ToList()
@@ -41,7 +41,7 @@ namespace GameRentalStoreWeb.Areas.User.Controllers
         public IActionResult Details(int gameId)
         {
             var game = _unitOfWork.Game.Get(u => u.Id == gameId, includeProperties: "Genre,GameMedias");
-            var gameRating = _unitOfWork.GameRating.GetAll(includeProperties: "ApplicationUser").Where(r => r.GameId == gameId).ToList();
+            var gameRating = _unitOfWork.GameRating.GetAll(includeProperties: "ApplicationUser").Where(r => r.GameId == gameId && r.Status == "Approved").ToList();
 
             var viewModel = new ShoppingCartVM
             {
@@ -72,6 +72,7 @@ namespace GameRentalStoreWeb.Areas.User.Controllers
             shoppingCart.RentedDate = DateOnly.FromDateTime(DateTime.Now);
             shoppingCart.Count = 1;
             shoppingCart.IsReplaced = false;
+            shoppingCart.Game = null;
             shoppingCart.UserPackageId = _unitOfWork.UserPackage.Get(u => u.ApplicationUserId == userId).Id;
 
 
