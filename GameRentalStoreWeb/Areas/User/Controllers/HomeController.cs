@@ -40,13 +40,16 @@ namespace GameRentalStoreWeb.Areas.User.Controllers
 
         public IActionResult Details(int gameId)
         {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var game = _unitOfWork.Game.Get(u => u.Id == gameId, includeProperties: "Genre,GameMedias");
             var gameRating = _unitOfWork.GameRating.GetAll(includeProperties: "ApplicationUser").Where(r => r.GameId == gameId && r.Status == "Approved").ToList();
+            var shoppingCart = _unitOfWork.ShoppingCart.Get(c => c.GameId == gameId && c.ApplicationUserId == userId && c.IsReplaced == false);
 
             var viewModel = new ShoppingCartVM
             {
                 Game = game,
-                GameRating = gameRating
+                GameRating = gameRating,
+                ShoppingCart = shoppingCart
             };
             return View(viewModel);
         }
