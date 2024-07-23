@@ -90,7 +90,7 @@ namespace GameRentalStoreWeb.Areas.User.Controllers
             ShoppingCart cartFromDb = _unitOfWork.ShoppingCart.Get(u => u.ApplicationUserId == userId && u.GameId == shoppingCart.GameId);
             if (cartFromDb != null)
             {
-                TempData["error"] = "You have already added this game in your rented list.";
+                TempData["error"] = "You have already replaced this game from your rented list.";
                 return RedirectToAction(nameof(Index));
             }
 

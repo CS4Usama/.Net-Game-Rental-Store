@@ -39,16 +39,6 @@ namespace GameRentalStoreWeb.Areas.User.Controllers
             var subscribedDate = DateOnly.FromDateTime(DateTime.Now);
             var expiredDate = subscribedDate.AddMonths(totalSubscriptionMonths);
 
-            // Check If the User Already has an Active Subscription:>
-            var existingSubscription = await _unitOfWork.UserPackage.FirstOrDefaultAsync(rec =>
-                rec.ApplicationUserId == userId && rec.ExpiredDate > subscribedDate
-            );
-            if (existingSubscription != null)
-            {
-                TempData["error"] = "You already have an active subscription";
-                return RedirectToAction("Index", "Home");
-            }
-
             var userPackage = new UserPackage
             {
                 ApplicationUserId = userId,
@@ -57,12 +47,38 @@ namespace GameRentalStoreWeb.Areas.User.Controllers
                 SubscribedDate = subscribedDate,
                 ExpiredDate = expiredDate,
             };
+            var subPkg = _unitOfWork.SubscriptionPackage.Get(p => p.Id == packageId);
+
+            // Check If the User Already has an Active Subscription:>
+            var existingSubscription = await _unitOfWork.UserPackage.FirstOrDefaultAsync(rec =>
+                rec.ApplicationUserId == userId && rec.ExpiredDate > subscribedDate
+            );
+
+            if (existingSubscription != null)
+            {
+                var existingSubPkg = _unitOfWork.SubscriptionPackage.Get(p => p.Id == existingSubscription.PackageId);
+                if (subPkg?.RentNewReleasedGame > existingSubPkg?.RentNewReleasedGame)
+                {
+                    existingSubscription.PackageId = userPackage.PackageId;
+                    existingSubscription.TotalSubscriptionMonths = userPackage.TotalSubscriptionMonths;
+                    existingSubscription.SubscribedDate = userPackage.SubscribedDate;
+                    existingSubscription.ExpiredDate = userPackage.ExpiredDate;
+                    _unitOfWork.UserPackage.Update(existingSubscription);
+                    await _unitOfWork.SaveAsync();
+                    TempData["success"] = "Package Updated Successfully";
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    TempData["error"] = "You already have an active subscription and can't downgrade it.";
+                    return RedirectToAction("Index", "Home");
+                }
+            }
 
             _unitOfWork.UserPackage.Add(userPackage);
             await _unitOfWork.SaveAsync();
 
             TempData["success"] = "Package Subscribed Successfully";
-
             return RedirectToAction("Index", "Home");
         }
 
