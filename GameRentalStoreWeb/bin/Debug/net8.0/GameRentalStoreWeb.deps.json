@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v8.0": {
       "GameRentalStoreWeb/1.0.0": {
         "dependencies": {
+          "GameRentalStore.BLL": "1.0.0",
           "GameRentalStore.DataAccess": "1.0.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.6",
           "Microsoft.AspNetCore.Identity.UI": "8.0.6",
@@ -2981,6 +2982,15 @@
           "System.Xml.ReaderWriter": "4.3.0"
         }
       },
+      "GameRentalStore.BLL/1.0.0": {
+        "dependencies": {
+          "GameRentalStore.DataAccess": "1.0.0",
+          "GameRentalStore.Models": "1.0.0"
+        },
+        "runtime": {
+          "GameRentalStore.BLL.dll": {}
+        }
+      },
       "GameRentalStore.DataAccess/1.0.0": {
         "dependencies": {
           "GameRentalStore.Models": "1.0.0",
@@ -4939,6 +4949,11 @@
       "sha512": "sha512-5zJ0XDxAIg8iy+t4aMnQAu0MqVbqyvfoUVl1yDV61xdo3Vth45oA2FoY4pPkxYAH5f8ixpmTqXeEIya95x0aCQ==",
       "path": "system.xml.xdocument/4.3.0",
       "hashPath": "system.xml.xdocument.4.3.0.nupkg.sha512"
+    },
+    "GameRentalStore.BLL/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "GameRentalStore.DataAccess/1.0.0": {
       "type": "project",

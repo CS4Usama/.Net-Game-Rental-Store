@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GameRentalStore.DataAccess")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+19e6e343484e9e3de0f332415152dda5859de4e6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ac67ba33e11a01b7f46d1403e48810515267c5be")]
 [assembly: System.Reflection.AssemblyProductAttribute("GameRentalStore.DataAccess")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GameRentalStore.DataAccess")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

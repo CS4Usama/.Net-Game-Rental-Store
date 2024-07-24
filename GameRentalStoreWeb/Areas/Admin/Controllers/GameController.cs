@@ -1,4 +1,6 @@
-﻿using GameRentalStore.DataAccess.Repository.IRepository;
+﻿using System.Security.Claims;
+using GameRentalStore.BLL;
+using GameRentalStore.DataAccess.Repository.IRepository;
 using GameRentalStore.Models;
 using GameRentalStore.Models.ViewModels;
 using GameRentalStore.Utility;
@@ -14,11 +16,14 @@ namespace GameRentalStore.Areas.Admin.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IWebHostEnvironment _webHostEnvironment;
-        public GameController(IUnitOfWork unitOfWork, IWebHostEnvironment webHostEnvironment)
+        private readonly GameService _gameService;
+        public GameController(IUnitOfWork unitOfWork, IWebHostEnvironment webHostEnvironment, GameService gameService)
         {
             _unitOfWork = unitOfWork;
             _webHostEnvironment = webHostEnvironment;
+            _gameService = gameService;
         }
+
         public IActionResult Index()
         {
             List<Game> objGameList = _unitOfWork.Game.GetAll(includeProperties: "Genre").ToList();
@@ -52,77 +57,26 @@ namespace GameRentalStore.Areas.Admin.Controllers
                 return View(gameVM);
             }
         }
+
+
         [HttpPost]
         public IActionResult Upsert(GameVM gameVM, List<IFormFile> files)
         {
-            if (ModelState.IsValid)
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            bool modelStateValidation = ModelState.IsValid;
+            string wwwRootPath = _webHostEnvironment.WebRootPath;
+
+            Result<object> result = _gameService.Upsert(gameVM, files, userId, modelStateValidation, wwwRootPath);
+
+            if (result.Status)
             {
-                if (gameVM.Game.Id == 0)
-                {
-                    _unitOfWork.Game.Add(gameVM.Game);
-                }
-                else
-                {
-                    _unitOfWork.Game.Update(gameVM.Game);
-                }
-                _unitOfWork.Save();
-
-                string wwwRootPath = _webHostEnvironment.WebRootPath;
-                if (files != null)
-                {
-                    foreach (IFormFile file in files)
-                    {
-                        string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
-                        string gamePath = @"media\games\game-" + gameVM.Game.Id;
-                        string finalPath = Path.Combine(wwwRootPath, gamePath);
-
-                        string mediaExt = Path.GetExtension(file.FileName).ToLower();
-                        string mediaType = "";
-                        if (mediaExt == ".png" || mediaExt == ".jpg" || mediaExt == ".jpeg" || mediaExt == ".webp")
-                        {
-                            mediaType = "image";
-                        }
-                        else if (mediaExt == ".mp4")
-                        {
-                            mediaType = "video";
-                        }
-
-                        if (!Directory.Exists(finalPath))
-                            Directory.CreateDirectory(finalPath);
-
-                        using (var fileStream = new FileStream(Path.Combine(finalPath, fileName), FileMode.Create))
-                        {
-                            file.CopyTo(fileStream);
-                        }
-
-                        GameMedia gameMedia = new()
-                        {
-                            MediaUrl = @"\" + gamePath + @"\" + fileName,
-                            GameId = gameVM.Game.Id,
-                            MediaType = mediaType
-                        };
-
-                        if (gameVM.Game.GameMedias == null)
-                            gameVM.Game.GameMedias = new List<GameMedia>();
-
-                        gameVM.Game.GameMedias.Add(gameMedia);
-                    }
-
-                    _unitOfWork.Game.Update(gameVM.Game);
-                    _unitOfWork.Save();
-                }
-
-                TempData["success"] = "Action Successful";
-                return RedirectToAction("Index", "Game");
+                TempData["success"] = result.Message;
+                return RedirectToAction(result.Action, result.Controller);
             }
             else
             {
-                gameVM.GenreList = _unitOfWork.Genre.GetAll().Select(u => new SelectListItem
-                {
-                    Text = u.Name,
-                    Value = u.Id.ToString()
-                });
-                return View(gameVM);
+                TempData["error"] = result.Message;
+                return View(result.Data);
             }
         }
 

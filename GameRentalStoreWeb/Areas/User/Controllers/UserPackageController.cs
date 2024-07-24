@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using System.Security.Claims;
+using GameRentalStore.BLL;
 using GameRentalStore.DataAccess.Repository.IRepository;
 using GameRentalStore.Models;
 using GameRentalStore.Models.ViewModels;
@@ -14,11 +15,14 @@ namespace GameRentalStoreWeb.Areas.User.Controllers
     {
         private readonly ILogger<UserPackageController> _logger;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly UserPackageService _userPackageService;
 
-        public UserPackageController(ILogger<UserPackageController> logger, IUnitOfWork unitOfWork)
+
+        public UserPackageController(ILogger<UserPackageController> logger, IUnitOfWork unitOfWork, UserPackageService userPackageService)
         {
             _logger = logger;
             _unitOfWork = unitOfWork;
+            _userPackageService = userPackageService;
         }
 
         public IActionResult Index()
@@ -36,50 +40,18 @@ namespace GameRentalStoreWeb.Areas.User.Controllers
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-            var subscribedDate = DateOnly.FromDateTime(DateTime.Now);
-            var expiredDate = subscribedDate.AddMonths(totalSubscriptionMonths);
+            Task<Result<object>> resultTask = _userPackageService.SubscriptionPackage(packageId, totalSubscriptionMonths, userId);
+            Result<object> result = await resultTask;
 
-            var userPackage = new UserPackage
+            if (result.Status)
             {
-                ApplicationUserId = userId,
-                PackageId = packageId,
-                TotalSubscriptionMonths = totalSubscriptionMonths,
-                SubscribedDate = subscribedDate,
-                ExpiredDate = expiredDate,
-            };
-            var subPkg = _unitOfWork.SubscriptionPackage.Get(p => p.Id == packageId);
-
-            // Check If the User Already has an Active Subscription:>
-            var existingSubscription = await _unitOfWork.UserPackage.FirstOrDefaultAsync(rec =>
-                rec.ApplicationUserId == userId && rec.ExpiredDate > subscribedDate
-            );
-
-            if (existingSubscription != null)
-            {
-                var existingSubPkg = _unitOfWork.SubscriptionPackage.Get(p => p.Id == existingSubscription.PackageId);
-                if (subPkg?.RentNewReleasedGame > existingSubPkg?.RentNewReleasedGame)
-                {
-                    existingSubscription.PackageId = userPackage.PackageId;
-                    existingSubscription.TotalSubscriptionMonths = userPackage.TotalSubscriptionMonths;
-                    existingSubscription.SubscribedDate = userPackage.SubscribedDate;
-                    existingSubscription.ExpiredDate = userPackage.ExpiredDate;
-                    _unitOfWork.UserPackage.Update(existingSubscription);
-                    await _unitOfWork.SaveAsync();
-                    TempData["success"] = "Package Updated Successfully";
-                    return RedirectToAction("Index", "Home");
-                }
-                else
-                {
-                    TempData["error"] = "You already have an active subscription and can't downgrade it.";
-                    return RedirectToAction("Index", "Home");
-                }
+                TempData["success"] = result.Message;
             }
-
-            _unitOfWork.UserPackage.Add(userPackage);
-            await _unitOfWork.SaveAsync();
-
-            TempData["success"] = "Package Subscribed Successfully";
-            return RedirectToAction("Index", "Home");
+            else
+            {
+                TempData["error"] = result.Message;
+            }
+            return RedirectToAction(result.Action, result.Controller);
         }
 
 
@@ -140,52 +112,18 @@ namespace GameRentalStoreWeb.Areas.User.Controllers
 
         public IActionResult Replace(int? id)
         {
-            var rentedGameToBeReplaced = _unitOfWork.ShoppingCart.Get(u => u.Id == id);
-            if (rentedGameToBeReplaced == null)
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            Result<object> result = _userPackageService.Replace(id, userId);
+
+            if (result.Status)
             {
-                return Json(new { success = false, message = "Error while Replacing" });
-            }
-
-            rentedGameToBeReplaced.IsReplaced = true;
-
-
-            // Checking User Package
-            var userPackage = _unitOfWork.UserPackage.Get(u => u.ApplicationUserId == rentedGameToBeReplaced.ApplicationUserId, includeProperties: "SubscriptionPackage");
-
-            int maxReplaceAllowed = 0;
-            if (userPackage.SubscriptionPackage.PackageName == "Premium")
-            {
-                maxReplaceAllowed = userPackage.SubscriptionPackage.MaxReplacePerMonth;
-            }
-            else if (userPackage.SubscriptionPackage.PackageName == "Premium Max")
-            {
-                maxReplaceAllowed = userPackage.SubscriptionPackage.MaxReplacePerMonth;
+                return Json(new { success = result.Status, message = result.Message });
             }
             else
             {
-                maxReplaceAllowed = 0;
+                return Json(new { success = result.Status, message = result.Message });
             }
-
-            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
-            List<ShoppingCart> replacedGames = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == userId && u.IsReplaced == true).ToList();
-
-            if (replacedGames.Count() >= maxReplaceAllowed)
-            {
-                return Json(new
-                {
-                    success = false,
-                    message = $"You can't replace more games because you have already replaced {userPackage.SubscriptionPackage.MaxReplacePerMonth} games according to your subscrption package."
-                });
-            }
-
-            Game replacedGame = _unitOfWork.Game.Get(g => g.Id == rentedGameToBeReplaced.GameId);
-            replacedGame.Quantity += 1;
-            _unitOfWork.Game.Update(replacedGame);
-
-            _unitOfWork.ShoppingCart.Update(rentedGameToBeReplaced);
-            _unitOfWork.Save();
-            return Json(new { success = true, message = "Replaced Successfully" });
         }
 
         #endregion

@@ -1,3 +1,4 @@
+using GameRentalStore.BLL;
 using GameRentalStore.DataAccess.Data;
 using GameRentalStore.DataAccess.Repository;
 using GameRentalStore.DataAccess.Repository.IRepository;
@@ -31,6 +32,10 @@ builder.Services.AddSession(options =>
 
 builder.Services.AddRazorPages();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<HomeService>();
+builder.Services.AddScoped<UserPackageService>();
+builder.Services.AddScoped<GameService>();
+builder.Services.AddScoped<GenreService>();
 
 var app = builder.Build();
 

@@ -1,4 +1,6 @@
-﻿using GameRentalStore.DataAccess.Repository.IRepository;
+﻿using System.Security.Claims;
+using GameRentalStore.BLL;
+using GameRentalStore.DataAccess.Repository.IRepository;
 using GameRentalStore.Models;
 using GameRentalStore.Utility;
 using Microsoft.AspNetCore.Authorization;
@@ -10,11 +12,15 @@ namespace GameRentalStoreWeb.Areas.Admin.Controllers
     [Authorize(Roles = SD.Role_Admin)]
     public class GenreController : Controller
     {
-        public readonly IUnitOfWork _unitOfWork;
-        public GenreController(IUnitOfWork unitOfWork)
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly GenreService _genreService;
+
+        public GenreController(IUnitOfWork unitOfWork, GenreService genreService)
         {
             _unitOfWork = unitOfWork;
+            _genreService = genreService;
         }
+
         public IActionResult Index()
         {
             List<Genre> objGenreList = _unitOfWork.Genre.GetAll().ToList();
@@ -40,43 +46,27 @@ namespace GameRentalStoreWeb.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Upsert(Genre genreObj)
         {
-            if (genreObj.Name == genreObj.DisplayOrder.ToString())
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            bool modelStateValidation = ModelState.IsValid;
+
+            Result<object> result = _genreService.Upsert(genreObj, userId, modelStateValidation);
+
+            if (result.Status)
             {
-                ModelState.AddModelError("name", "DisplayOrder cannot be exactly same like Name.");
-            }
-            else if (genreObj.Name != null && genreObj.Name.ToLower() == "test")
-            {
-                ModelState.AddModelError("", "Test is an Invalid Value.");
+                TempData["success"] = result.Message;
+                return RedirectToAction(result.Action, result.Controller);
             }
             else
             {
-                var existingDisplayOrder = _unitOfWork.Genre.Get(g => g.DisplayOrder == genreObj.DisplayOrder || g.Name.ToLower() == genreObj.Name.ToLower());
-                if (existingDisplayOrder != null)
+                if (result.Action == "name")
                 {
-                    if (existingDisplayOrder.Id != genreObj.Id)
-                    {
-                        ModelState.AddModelError("", "This Genre already exists. Please choose a different one.");
-                    }
-                }
-            }
-
-            if (ModelState.IsValid)
-            {
-                if (genreObj.Id == 0)
-                {
-                    _unitOfWork.Genre.Add(genreObj);
+                    ModelState.AddModelError("name", result.Message);
                 }
                 else
                 {
-                    _unitOfWork.Genre.Update(genreObj);
+                    ModelState.AddModelError("", result.Message);
                 }
-                _unitOfWork.Save();
-                TempData["success"] = "Operation Successfull";
-                return RedirectToAction("Index", "Genre");
-            }
-            else
-            {
-                return View(genreObj);
+                return View(result.Data);
             }
         }
 
@@ -95,6 +85,7 @@ namespace GameRentalStoreWeb.Areas.Admin.Controllers
             }
             return View(gameFromDb);
         }
+
 
         [HttpPost, ActionName("Delete")]
         public IActionResult DeletePOST(int? id)

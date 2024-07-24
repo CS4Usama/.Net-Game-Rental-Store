@@ -4857,6 +4857,20 @@
           "lib/netstandard1.3/System.Xml.XDocument.dll": {}
         }
       },
+      "GameRentalStore.BLL/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "GameRentalStore.DataAccess": "1.0.0",
+          "GameRentalStore.Models": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/GameRentalStore.BLL.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GameRentalStore.BLL.dll": {}
+        }
+      },
       "GameRentalStore.DataAccess/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
@@ -13976,6 +13990,11 @@
         "system.xml.xdocument.nuspec"
       ]
     },
+    "GameRentalStore.BLL/1.0.0": {
+      "type": "project",
+      "path": "../GameRentalStore.BLL/GameRentalStore.BLL.csproj",
+      "msbuildProject": "../GameRentalStore.BLL/GameRentalStore.BLL.csproj"
+    },
     "GameRentalStore.DataAccess/1.0.0": {
       "type": "project",
       "path": "../GameRentalStore.DataAccess/GameRentalStore.DataAccess.csproj",
@@ -13994,6 +14013,7 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "GameRentalStore.BLL >= 1.0.0",
       "GameRentalStore.DataAccess >= 1.0.0",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 8.0.6",
       "Microsoft.AspNetCore.Identity.UI >= 8.0.6",
@@ -14032,6 +14052,9 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
+            "C:\\Users\\preci\\Downloads\\MEmu Download\\GameRentalStore\\GameRentalStore.BLL\\GameRentalStore.BLL.csproj": {
+              "projectPath": "C:\\Users\\preci\\Downloads\\MEmu Download\\GameRentalStore\\GameRentalStore.BLL\\GameRentalStore.BLL.csproj"
+            },
             "C:\\Users\\preci\\Downloads\\MEmu Download\\GameRentalStore\\GameRentalStore.DataAccess\\GameRentalStore.DataAccess.csproj": {
               "projectPath": "C:\\Users\\preci\\Downloads\\MEmu Download\\GameRentalStore\\GameRentalStore.DataAccess\\GameRentalStore.DataAccess.csproj"
             }

@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\GameRentalStore.BLL\GameRentalStore.BLL.csproj" />
     <ProjectReference Include="..\GameRentalStore.DataAccess\GameRentalStore.DataAccess.csproj" />
   </ItemGroup>
 

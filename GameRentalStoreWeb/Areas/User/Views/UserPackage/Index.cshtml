@@ -54,7 +54,7 @@
                                 }
                             </div>
 
-                            <form method="post" asp-action="Index" enctype="multipart/form-data">
+                            <form method="post" asp-action="Index" asp-controller="UserPackage" enctype="multipart/form-data">
                                 <input type="hidden" name="packageId" value="@package.Id" />
                                 <button type="button" class="btn @(package.PackageName == "Premium Max" ? "btn-outline-warning" : "btn-light") rounded-5 border-1 border-dark w-100 small-font-2 fw-bold my-2 py-2" data-bs-toggle="modal" data-bs-target="#exampleModal-@package.Id">
                                     Subscribe Now
